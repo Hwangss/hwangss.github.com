@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <meta http-equiv="X-UA-Compatible" content="IE=7" />
+  <title>2013《梦幻西游》梦想盛宴活动专题</title>
+  <meta name="keywords" content="梦幻西游,盛宴,线下见面,玩家聚会,奖励,爆料,开发预告" />
+  <meta name="description" content="发团队零距离、与游戏好友面对面，《梦幻西游》2013梦想盛宴将前往全国5大城市，快来一同参与这个《梦幻西游》玩家的专属欢聚盛会吧！">
+  <meta name="author" content="网易，NetEase Inc." />
+  <meta name="copyright" content="网易，NetEase Inc." />
+  <meta name="pmid" content="272540" />
+  <meta name="editor" content="rosiel,SX_E" />
+  <meta name="designer" content="Charles" />
+  <meta name="front-end technicist" content="SX_T" />
+  <link type="text/css" rel="stylesheet" href="css/index.css" media="all" />
+  <!--[if IE 6]><script>try{document.execCommand("BackgroundImageCache", false, true);}catch(e){}</script><![endif]-->  
+  <!-- jquery mix NIE (最新版本）-->
+  <script charset="gb2312" src="http://res.nie.netease.com/comm/js/jquery(mixNIE).last.js"></script>
+  <script type="text/javascript" src="js/com.js"></script>
+</head>
+<body>
+<div id="NIE-topBar"></div>
+<div id="wrap">
+  <div id="wrap-bg1">
+    <div id="wrap-bg2">
+      <div id="wrap-bg3">
+        <h1 class="hide">《大话西游3》新资料片</h1>
+        <h2 class="hide">《大话西游3》游戏宝典</h2>
+        <span id="shareUrl" class="hide">images/fenxiang.jpg</span>
+        <!-- 主体 Start -->
+        <div id="main">
+        
+          <!-- 页眉 Start -->
+          <div id="header">
+            <a href="http://xyq.163.com/index.html" class="meta-home" title="点击返回官网" target="_blank">返回官网</a>
+            <div class="top-meta">
+              <a href="http://xyq.163.com/index.html" target="_blank" class="meta-g" title="进入官网">进入官网</a>
+              <a href="http://xyq.163.com/download/" target="_blank" class="meta-d" title="下载游戏">下载游戏</a>
+              <a href="http://xyq.163.com/reg/" target="_blank" class="meta-z" title="注册账号">注册账号</a>
+              <a href="http://xyq.netease.com/" target="_blank" class="meta-b" title="论坛">论坛</a>
+            </div>
+          </div>
+          <!-- 页眉 End -->
+          
+          <!-- 中心 Start -->
+          <div id="center">
+            <div class="lineList">
+              <ul class="hide">
+                <li>深圳，5月25日</li>
+                <li>上海，7月27日</li>
+                <li>成都，9月28日</li>
+                <li>武汉，11月23日</li>
+                <li>神秘站点，12月</li>
+              </ul>
+            </div>
+            <a href="#" class="szBtn" target="_blank">查看精彩详情</a>
+            <a href="#" class="shBtn" target="_blank">查看精彩详情</a>
+            <a href="#" class="enrollBtn hideFont" target="_blank">立即报名</a>
+            <div id="share"></div>
+          </div>
+          <!-- 中心 End -->
+          
+          <!-- 页脚 Start -->
+          <div id="footer">
+          
+            <!-- NIE 底部版权 Start -->
+            <div id="NIE-copyRight">
+            </div>
+            <!-- NIE 底部版权 End -->
+            
+          </div>
+          <!-- 页脚 End -->
+          
+        </div>        
+        <!-- 主体 End -->
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 页面外套 End -->
+</body>
+</html>
