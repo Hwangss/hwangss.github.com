@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<title>Web Faction</title>
+	<style>
+		*{margin: 0;padding: 0;font-weight: normal;}
+      	a{color:#FFF;text-decoration:none;}
+		html,body{position: relative;height: 100%;font:16px/1.5 "mss","Microsoft YaHei";min-width: 1000px;overflow: hidden;color: #FFF;}
+		@media screen and (min-width:1200px){
+			body{font-size: 1.2em;}
+		}
+		@font-face {
+		    font-family: 'mss';
+		    src: url('font/mss.eot');
+		    src: url('font/mss.eot?#iefix') format('embedded-opentype'),
+		         url('font/mss.woff') format('woff'),
+		         url('font/mss.ttf') format('truetype'),
+		         url('font/mss.svg#mss') format('svg');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		.clearfix:after{content: ".";display: block;height: 0;font-size: 0;width: 0;visibility: hidden;overflow: hidden;clear: both;}
+		.clearfix{*zoom:1;}
+		.hidden{display: none;}
+
+
+		#cheapWeb{position:absolute;top:50%;left:0;width:100%;height: 3em;margin-top:-1.5em;text-align: center;background: #00A3CF;color: #FFF;font-size: 3em;}
+		#cheapWeb strong{color: rgb(254,188,188);}
+	/*part FAB*/
+		.fab{width: 100%;height:100%;position: absolute;left:0;top:0;z-index:10;font-size: 4em;font-weight:bold;color: #F90;overflow: hidden;background: rgb(26,160,225);}
+		.fab div{position: absolute; left: -20%;top: -30%;color: #FFF;text-shadow:5px 5px 5px #72CCE4;}
+		.fab .web{position: absolute;left: 15%;top: 25%;color: #FFF;opacity:0;text-shadow: 10px 10px 20px #72CCE4;font-size: 4em;font-weight: bold;margin-left: -.5em;margin-top: -.5em;font-family: "Comic Sans MS"}
+		.fab .faction3{left:90%;-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-webkit-transform-origin: right bottom;-moz-transform-origin: right bottom;z-index:10;}
+		.fab .factionTree{color: lightGreen;}
+		.fab .facLine{left: 55.5%;top: 15%;width: 10px;height:0;background: #FFF;}
+    	.fab .startBtn{font-size:.5em;position:absolute;left:30%;top:70%;text-align: center;padding:5px 20px;text-shadow: 0 1px 1px rgba(0,0,0,0.4);  background: rgb(130,207,241);box-shadow: #1994D3 0 6px 0px, rgba(0, 0, 0, 0.3) 0 10px 10px;border-radius: 50px;-webkit-animation:startBtn 1s ease-in 7;-moz-animation:startBtn 1s ease-in 7;opacity: 0;}
+    	.fab .startBtnHov{box-shadow: #1994D3 0 3px 0px, rgba(0, 0, 0, 0.3) 0 10px 10px;top:70.5%;}
+		@-webkit-keyframes web{
+			0%{-webkit-transform:rotate(0deg) scale(1);opacity: 0;}
+			30%{-webkit-transform:rotate(740deg) scale(.6);opacity: 1}
+			40%{-webkit-transform:rotate(740deg) scale(.5);}
+			50%{-webkit-transform:rotate(740deg) scale(.7);text-shadow:10px 10px 10px #FFF;}
+			60%{-webkit-transform:rotate(740deg) scale(.6);}
+			70%{-webkit-transform:rotate(740deg) scale(.7);text-shadow:10px 10px 10px #FFF;}
+			100%{-webkit-transform:rotate(740deg) scale(.5);opacity: 1;text-shadow: 10px 10px 0px #72CCE4;}
+		}
+		@-webkit-keyframes tree{
+			0%{-webkit-transform:rotate(0deg);top:55%;left:58%;}
+			10%{-webkit-transform:rotate(-20deg);top:55%;left:57%;}
+			45%{-webkit-transform:rotate(20deg);top:55%;left:56%;}
+			55%{-webkit-transform:rotate(-20deg);}
+			65%{-webkit-transform:rotate(20deg);}
+			100%{-webkit-transform:rotate(20deg);top:100%;}
+		}
+		@-webkit-keyframes stand{
+			0%{-webkit-transform:rotate(45deg);}
+			40%{-webkit-transform:rotate(0deg);-webkit-transform-origin: left bottom;}
+			85%{-webkit-transform:rotate(-10deg);-webkit-transform-origin: left bottom;}
+			100%{-webkit-transform:rotate(0deg);-webkit-transform-origin: right bottom;}
+		}
+		@-webkit-keyframes startBtn{
+			0%{-webkit-transform:scale(1);}
+			50%{-webkit-transform:scale(1.1);}
+			100%{-webkit-transform:scale(1);}
+		}
+		@-moz-keyframes web{
+			0%{-moz-transform:rotate(0deg) scale(1);opacity: 0;}
+			30%{-moz-transform:rotate(740deg) scale(.6);opacity: 1}
+			40%{-moz-transform:rotate(740deg) scale(.5);}
+			50%{-moz-transform:rotate(740deg) scale(.7);text-shadow:10px 10px 10px #FFF;}
+			60%{-moz-transform:rotate(740deg) scale(.6);}
+			70%{-moz-transform:rotate(740deg) scale(.7);text-shadow:10px 10px 10px #FFF;}
+			100%{-moz-transform:rotate(740deg) scale(.5);opacity: 1;text-shadow: 10px 10px 0px #72CCE4;}
+		}
+		@-moz-keyframes tree{
+			0%{-moz-transform:rotate(0deg);top:55%;left:58%;}
+			10%{-moz-transform:rotate(-20deg);top:55%;left:57%;}
+			45%{-moz-transform:rotate(20deg);top:55%;left:56%;}
+			55%{-moz-transform:rotate(-20deg);}
+			65%{-moz-transform:rotate(20deg);}
+			100%{-moz-transform:rotate(20deg);top:100%;}
+		}
+		@-moz-keyframes stand{
+			0%{-moz-transform:rotate(45deg);}
+			40%{-moz-transform:rotate(0deg);-moz-transform-origin: left bottom;}
+			85%{-moz-transform:rotate(-10deg);-moz-transform-origin: left bottom;}
+			100%{-moz-transform:rotate(0deg);-moz-transform-origin: right bottom;}
+		}
+		@-moz-keyframes startBtn{
+			0%{-moz-transform:scale(1);}
+			50%{-moz-transform:scale(1.1);}
+			100%{-moz-transform:scale(1);}
+		}
+	/*end FAB*/
+
+	/*part List*/
+		.shade{position: absolute;left: 50%;top: 50%;z-index: 15;width: 0;height: 0;background: rgb(32,77,80);border-radius: 10000px;}
+		.listBox{position:absolute;left:0;top:0;z-index:20;width:100%;height: 100%;background: rgb(32,77,80);color: #FFF;display: none;}/*display: none;*/
+		.listBox h2{text-align: center;text-shadow:3px 2px 1px #72CCE4;font-size: 3em;height: 0%;overflow: hidden;}
+		.list{width: 80%;margin: 0 auto;height: 80%;min-width: 1000px;font-size: 1.5em;margin-top: 2%;display: none;opacity: 0;}/*display: none;opacity: 0;*/
+		.list li{float:left;width: 32%;margin-left:1%;margin-bottom:1%;height: 15%;background:rgb(77,179,184);list-style: none outside none;text-align: center;}
+		.list li:before{height: 100%;display: inline-block;vertical-align: middle;width: 0;content: ""}
+		.list li:hover,
+		.list li:hover a{color:#ccc;}
+		.listShow{position: absolute;left: 50%;top: 50%;font-size: 1.5em;text-align: center;z-index: 20;-webkit-transform-origin: center center;-moz-transform-origin: center center;}
+		.listCanvas{position: absolute;width: 500%;height: 1000%;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);-webkit-transform-origin: left top;-moz-transform-origin: left top;left:-350%;top:-400%;background: #5BBC93;}
+
+		@-webkit-keyframes listShow{
+			0%{-webkit-transform:rotate(0deg);font-size: 1.5em;}
+			100%{-webkit-transform:rotate(1080deg);font-size: 3em;}
+		}
+		@-moz-keyframes listShow{
+			0%{-moz-transform:rotate(0deg);font-size: 1.5em;}
+			100%{-moz-transform:rotate(1080deg);font-size: 3em;}
+		}
+	/*end List*/
+
+	/*part Content*/
+		.contentBox{position: absolute;left: 0;top: 0;z-index: 30;width: 100%;height: 100%;background: #5BBC93;display: none;}
+		.contentBox .cont{position:absolute;left:0;top:0;height: 100%;width: 100%;display: none;background: #5BBC93;box-shadow: 0px 0 50px #598c79;overflow: auto;}
+		.contentBox .prev,
+		.contentBox .next{position: absolute;left: .5em;top: 50%;z-index:9999;width: 4em;height: 4em;margin-top::;em;background: #FFF;border-radius: 200px;cursor: pointer;}
+		.contentBox .next{left: 100%;margin-left: -5.5em;}
+		.contentBox .prev:hover,
+		.contentBox .next:hover{background:#598c79;}
+		.contentBox .prev:hover:after{border-right-color:#598c79; }
+		.contentBox .next:hover:after{border-left-color:#598c79; }
+		.contentBox .next:before,
+		.contentBox .prev:before{content: "";position: absolute;left:50%;top:50%;width: 3.5em;height: 3.5em;margin-left: -1.75em;margin-top: -1.75em;border-radius: 200px;background:#5BBC93;}
+		.contentBox .prev:after,
+		.contentBox .next:after{content: "";position: absolute;left:50%;top:50%;margin-left:-0.9375em;margin-top:-1.25em;background:#FFF;border-width: 1.25em 1.25em 1.25em 0;border-style:dashed solid dashed dashed;border-color: #5BBC93 #FFF #5BBC93 #5BBC93;}
+		.contentBox .next:after{border-width: 1.25em 0 1.25em 1.25em;border-style:dashed dashed dashed solid;border-color: #5BBC93 #5BBC93 #5BBC93 #FFF;margin-left: -0.3125em;}
+		.contentBox .closeBox{position: absolute;right:0;top:0;z-index:9999;width: 30%;height: 20%;opacity: 0;}
+		.contentBox .closeBox .close{position: absolute;right: 0;top: 0;width: 2em;height: 2em;font-size: 2em;line-height: 2;text-align: center;color: #FFF;cursor:pointer;}
+		.contentBox .closeBox .close:hover{color: #F30;}
+		.contentBox>div h2{height: 20%;font-size: 3em;text-align: center;color: #FFF;}
+		.details{width: 1000px;margin: 0 auto;font-size: 1.7em;word-break: break-all;text-align: center;font-family: "Comic Sans MS","Microsoft YaHei"}
+		.details p{text-align: left;}
+		.details p a{color: yellow;}
+		.details p span{color: yellow;display: inline-block;}
+		.btn1-1,#img1-1,.input{display: none;}
+		.input{color: yellow;}
+		.input input{height: 3em;}
+		.viewDemo{width: 100%;height: 500px;background:#FFF;overflow: auto;}
+		.demoW{height: 2000px;position: relative;}
+		.ball{position: absolute;width: 100px;height: 100px;border-radius: 100px;background:#000;}
+		.ball1{top: 100px; left: 10px;}
+		.ball2{top: 160px;left: 400px;}
+		.ball3{top: 300px;left: 800px;}
+	/*end Content*/
+
+	.alert{position: absolute;left: 0;top:0;width: 100%;height: 100%;z-index: 9999;display: none;opacity: 0;}
+	.alert .first{position: absolute;left: 50%;top: 50%;width: 200px;height:200px;margin-left:-100px;margin-top:-100px;font-size: 4em;line-height:3;text-align: center;color: #FFF;background: rgb(254,188,188);border-radius: 200px;background: #FFF;overflow: hidden;}
+	.alert .first:before{position: absolute;content: "";left: 50%;top: 50%;width: 180px;height: 180px;background: rgb(254,118,118);border-radius: 180px;margin-left: -90px;margin-top: -90px;}
+	.alert .first:after{position: absolute;left:50%;top:50%;margin-left:-5px;margin-top:-95px;width: 10px;height: 190px;-webkit-transform:rotate(50deg);-moz-transform:rotate(50deg);background: #FFF;content: "" }
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	
+</head>
+<body>
+	<div class="fab">
+		<div class="web">Web</div>
+		<div class="faction1">流</div>
+		<div class="faction2">行</div>
+		<div class="faction3">素</div>
+		<div class="factionTree">树</div>
+		<div class="facLine"></div>
+      <a href="javascript:;" class="startBtn">Start</a>
+	</div>
+	<div class="shade"></div>
+	<div class="listBox">
+		<h2>Web Pop Elements</h2>
+		<ul class="list clearfix">
+			<li><a href="#p1">Web的演变</a></li>
+			<li><a href="#p2">CSS3的使用</a></li>
+			<li><a href="#p3">CSS预处理器</a></li>
+			<li><a href="#p4">前端框架</a></li>
+			<li><a href="#p5">Responsive设计</a></li>
+			<li><a href="#p6">视差滚动</a></li>
+			<li><a href="#p7">单一网页</a></li>
+			<li><a href="#p8">全屏背景</a></li>
+			<li><a href="#p9">Metro时代</a></li>
+			<li><a href="#p10">移动端</a></li>
+		</ul>
+	</div>
+	<div class="contentBox">
+		<div class="cont cont1">
+			<h2>Web的演变</h2>
+			<div class="details">
+				<p>HTML=>HTML2=>HTML3.2=>HTML4=>XHTML1=>HTML5=>?</p>
+				<p>CSS1=>CSS2=>CSS2.1=>CSS3=>?</p>
+				<p>Javascript≠Java</p>
+				<p class="btn1-1"><a href="jascript:;">看不懂？</a><em class="hidden">你懂吗？</em></p>
+				<img src="images/cont1-1.jpg" width="562" height="470" alt="cont1" id="img1-1">
+				<p class="input">所谓的HTML5：</p>
+				<p class="input">placeholder:<input type="text" placeholder="请输入密码"></p>
+			</div>
+			
+		</div>
+		<div class="cont cont2">
+			<h2>CSS3的使用</h2>
+			<div class="details">
+				<p>常用属性：</p><br>
+				<p><span style="border-radius:10px;width:10em;height:2em;background:#de9317;line-height:2em;text-align:center">border-radius</span></p><br>
+				<p><span style="border-radius:10px;box-shadow:2px 1px 10px 0 #a05000;width:10em;height:2em;background:#de9317;line-height:2em;text-align:center">box-shadow</span></p><br>
+				<p><span style="border-radius:10px;box-shadow:2px 1px 10px 0 #a05000;text-shadow:2px 1px 5px #F09;width:10em;height:2em;background:#de9317;line-height:2em;text-align:center">text-shadow</span></p><br>
+				<p><span style="border-radius:10px;box-shadow:2px 1px 10px 0 #a05000;text-shadow:2px 1px 5px #F09;width:10em;height:2em;background:#de9317;line-height:2em;text-align:center;background:-webkit-linear-gradient(top,#de9317,yellow);background:-moz-linear-gradient(top,#de9317,yellow);">gradient</span></p><br>
+				<p>还有font-face，opacity等等，更多可查看：<a href="http://css.doyoe.com/" target="_blank">http://css.doyoe.com/</a></p>
+			</div>
+		</div>
+		<div class="cont cont3">
+			<h2>CSS预处理器</h2>
+			<div class="details">
+				<p>LESS:</p>
+				<img src="images/cont3-1.jpg" width="1000" alt="LESS">
+				<p>官网地址:<a href="http://lesscss.org">http://lesscss.org</a></p><br><br>
+				<p>SASS:</p>
+				<img src="images/cont3-2.jpg" width="1000" alt="SASS">
+				<p>官网地址:<a href="http://sass-lang.com">http://sass-lang.com</a></p><br><br>
+			</div>
+		</div>
+		<div class="cont cont4">
+			<h2>前端框架</h2>
+			<div class="details">
+				<p>Bootstrap:</p>
+				<img src="images/cont4-1.jpg" width="1000" alt="bootstrap"><br><br>
+				<p>还有熟知的<span>Metro UI,EasyUI,Jquery UI</span>等等框架。</p>
+			</div>
+		</div>
+		<div class="cont cont5">
+			<h2>Responsive设计</h2>
+			<div class="details">
+				<p>根据不同屏幕所呈现的效果：</p>
+				<img src="images/cont5-1.jpg" width="1000" alt="responsive"><br><br><br>
+				<p>设计用到的断点：</p>
+				<img src="images/cont5-2.jpg" width="1000" alt="responsive"><br><br>
+			</div>
+		</div>
+		<div class="cont cont6">
+			<h2>视差滚动</h2>
+			<div class="details">
+				<p>不同背景或元素以不同的速度移动所产生出来的视觉效果。</p>
+				<iframe src="view.html" width="100%" height="100%" frameborder="0"></iframe>
+			</div>
+		</div>
+		<div class="cont cont7">
+			<h2>单一网页</h2>
+			<div class="details">
+				<p>　　多内容继集成在一个页面中，避免从一个页面跳转到另外一个页面。（本页面就是一个单一网页）</p><br><br>
+				<p><span>注意事项：</span></p>
+				<p>　　内容太多加载过慢，可用ajax异步加载或者延迟加载。</p>
+				<p>　　层叠太多页面会卡，可令不在当前的部分直接隐藏。</p>
+			</div>
+		</div>
+		<div class="cont cont8" style="background: url(images/cont8-1.jpg) center center no-repeat;">
+			<h2>全屏背景</h2>
+			<div class="details">
+				<br>
+				<br>
+				<p style="text-align:right;">用全屏背景来阐释品牌　　</p>
+				<p style="text-align:right;">好的一张图代替千言万语。</p>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<p>地址：<a href="http://ringvemedia.com/">http://ringvemedia.com/</a></p>
+			</div>
+		</div>
+		<div class="cont cont9">
+			<h2>Metro时代</h2>
+			<div class="details">
+				<img src="images/cont9-1.jpg" width="600" height="337" alt="metro风格" style="float:left;">
+				<ul style="text-align: left;list-style:inside;margin-left:620px;">
+					<li>微软的设计语言</li>
+					<li>网页设计的新浪潮</li>
+					<li>多色块组合</li>
+					<li>基于文本的按钮</li>
+					<li>浮动区块</li>
+					<li>明亮的标志代表不同的项目</li>
+					<li>简约、轻松的视觉</li>
+				</ul>
+			</div>
+		</div>
+		<div class="cont cont10">
+			<h2>移动端</h2>
+			<div class="details">
+				<img src="images/cont10-1.jpg" width="437" height="317" alt="移动端" style="float:left">
+				<ul style="text-align: left;list-style:inside;margin-left:460px;">
+					<li>移动网站设计</li>
+					<li>为移动端优化现有的网站（Responsive）</li>
+					<li>移动应用开发（APP）</li>
+				</ul>
+			</div>
+		</div>
+		<div class="prev"></div>
+		<div class="next"></div>
+		<div class="closeBox">
+			<span class="close">X</span>
+		</div>
+	</div>
+	<div class="alert">
+		<strong class="first"></strong>
+	</div>
+	<script>
+	    $(function() {
+	    	//判断是否为webkit和moz内核
+	    	!/firefox|webkit/.test(navigator.userAgent.toLowerCase()) ? $("body").html("<div id='cheapWeb'><p>作者君太烂</p><p>你的<strong>渣渣</strong>浏览器看不了的</p></div>") : (function() {
+	    		var bodyH = $("body").height(),
+	    			whichPage = 0,
+	    			contentNow = false,
+	    			alerting = false,
+	    			contentZIndex = 10;
+	    		var goP = window.location.hash.match(/\d+/);
+	    		if (goP && goP > 0 && goP < 11) {
+	    			contentNow = true;
+	    			$(".listBox").show().find("h2").css({
+	    				height: "20%"
+	    			}).end().find(".list").show().css({
+	    				marginTop: 0,
+	    				opacity: 1
+	    			});
+	    			$(".contentBox").show().find(".cont").eq(goP - 1).show();
+	    			whichPage = goP - 1;
+	    			if (whichPage == 0) {
+	    				$(".prev").hide();
+	    			} else if (whichPage == 9) {
+	    				$(".next").hide();
+	    			}
+	    		}
+	    		//动画队列
+	    		var startAni = [function() {
+	    			$(".facLine").animate({
+	    				height: "70%"
+	    			}, startCne);
+	    		},
+
+	    		function() {
+	    			$(".faction1").animate({
+	    				left: "60%",
+	    				top: "25%"
+	    			}, startCne);
+	    		},
+
+	    		function() {
+	    			$(".faction2").animate({
+	    				left: "60%",
+	    				top: "40%"
+	    			}, startCne);
+	    		},
+
+	    		function() {
+	    			$(".factionTree").animate({
+	    				left: "60%",
+	    				top: "55%"
+	    			}, startCne);
+	    		},
+
+	    		function() {
+	    			$(".faction3").animate({
+	    				top: "55%",
+	    				left: "60%"
+	    			}, startCne);
+	    		},
+
+	    		function() {
+	    			$(".factionTree").css({
+	    				"-webkit-animation": "tree 2s ease-out forwards",
+	    				"-moz-animation": "tree 2s ease-out forwards"
+	    			});
+	    			setTimeout(function() {
+	    				$(".faction3").animate({
+	    					top: "55%"
+	    				}, function() {
+	    					$(this).css({
+	    						"-webkit-animation": "stand 1s ease-out forwards",
+	    						"-moz-animation": "stand 1s ease-out forwards"
+	    					})
+	    				});
+	    				setTimeout(function() {
+	    					$(".web").css({
+	    						"-webkit-animation": "web 1s ease-out forwards",
+	    						"-moz-animation": "web 1s ease-out forwards"
+	    					});
+	    					startCne();
+	    				}, 1500);
+	    			}, 1000)
+	    		},
+
+	    		function() {
+	    			$(".startBtn").animate({
+	    				opacity: 1
+	    			}, 3000);
+	    		},
+
+	    		function() {
+	    			$(".listBox").find("h2").animate({
+	    				height: "20%"
+	    			}, 2000, startCne);
+	    		},
+
+	    		function() {
+	    			$(".list").show().animate({
+	    				marginTop: 0,
+	    				opacity: 1
+	    			})
+	    		}];
+	    		//回调执行下一个队列函数
+	    		var startCne = function() {
+	    			$(document).dequeue("startAnimaition");
+	    		}
+	    		$(document).queue("startAnimaition", startAni);
+	    		startCne();
+
+	    		//开始按钮效果
+	    		$(".startBtn").mousedown(function() {
+	    			$(this).addClass("startBtnHov")
+	    		})
+	    			.mouseup(function() {
+	    			$(this).removeClass("startBtnHov")
+	    		})
+	    			.click(function() {
+	    			$(".fab").animate({
+	    				opacity: 0
+	    			}, 2000, function() {
+	    				$(this).hide();
+	    			});
+	    			$(".shade").animate({
+	    				width: "2500px",
+	    				height: "2500px",
+	    				marginLeft: "-1250px",
+	    				marginTop: "-1250px"
+	    			}, 2000, function() {
+	    				$(".listBox").show();
+	    				$(this).hide();
+	    				startCne();
+	    			})
+	    		})
+
+	    		//列表选项跳转
+	    		$(".list").find("a").each(function(i) {
+	    			$(this).click(function() {
+	    				whichPage = i;
+	    				if (whichPage == 0) {
+	    					$(".prev").hide();
+	    				} else if (whichPage == 9) {
+	    					$(".next").hide();
+	    				}
+	    				$("<div class='listShow'></div>").appendTo($(".listBox"))
+	    				var w = $(this).width() * 3;
+	    				var h = (bodyH * 0.2).toFixed(2);
+	    				$(".listShow").html($(this).html()).css({
+	    					width: w,
+	    					height: h,
+	    					marginLeft: -w / 2,
+	    					marginTop: -h / 2,
+	    					"-webkit-animation": "listShow 1s ease-out forwards",
+	    					"-moz-animation": "listShow 1s ease-out forwards"
+	    				});
+	    				$("<div class='listCanvas'></div>").appendTo($(".listBox")).animate({
+	    					left: "60%"
+	    				}, 3000, function() {
+	    					$(".listShow").animate({
+	    						top: h / 2
+	    					}, pageChange);
+	    				});
+	    			})
+	    		})
+
+	    		//进入详细页调用
+
+	    		function pageChange() {
+	    			$(".contentBox").css({
+	    				opacity: 1
+	    			}).show().find(">div").eq(whichPage).css({
+	    				"z-index": contentZIndex++
+	    			}).show();
+	    			$(".listBox").hide();
+	    			$(".listShow").remove();
+	    			$(".listCanvas").remove();
+	    			contentNow = true;
+	    		}
+
+	    		function warning() {
+	    			if (alerting) return false;
+	    			alerting = true;
+	    			$(".alert").show().animate({
+	    				opacity: 1
+	    			}, 1000, function() {
+	    				$(this).animate({
+	    					opacity: 0
+	    				}, 1000, function() {
+	    					$(this).hide();
+	    					alerting = false;
+	    				})
+	    			})
+	    		}
+
+	    		function prevPage() {
+	    			whichPage == 0 ? warning() : (function() {
+	    				$(".next").show();
+	    				whichPage == 1 ? $(".prev").hide() : $(".prev").show();
+	    				$(".cont").stop(false, true).eq(whichPage).animate({
+	    					left: "100%"
+	    				}, 2000, function() {
+	    					$(this).css({
+	    						left: 0
+	    					}).hide();
+	    				}).end()
+	    					.eq(--whichPage).css({
+	    					left: "-100%",
+	    					display: "block",
+	    					"z-index": contentZIndex++
+	    				}).animate({
+	    					left: "0"
+	    				}, 1000, function() {
+	    					var str = window.location.href;
+	    					str = str.replace(/#p\d+/, "#p" + (whichPage + 1))
+	    					window.location.href = str;
+	    					$(".cont1").find("*").attr("style", "");
+	    					$(".cont").each(function() {
+	    						this.index = 1;
+	    					})
+	    				});
+	    			})()
+	    		}
+
+	    		function nextPage() {
+	    			whichPage == 9 ? warning() : (function() {
+	    				$(".prev").show();
+	    				whichPage == 8 ? $(".next").hide() : $(".next").show();
+	    				$(".cont").stop(false, true).eq(whichPage).animate({
+	    					left: "-100%"
+	    				}, 2000, function() {
+	    					$(this).css({
+	    						left: 0
+	    					}).hide();
+	    				}).end()
+	    					.eq(++whichPage).css({
+	    					left: "100%",
+	    					display: "block",
+	    					"z-index": contentZIndex++
+	    				}).animate({
+	    					left: "0"
+	    				}, 1000, function() {
+	    					var str = window.location.href;
+	    					str = str.replace(/#p\d+/, "#p" + (whichPage + 1))
+	    					window.location.href = str;
+	    					$(".cont1").find("*").attr("style", "");
+	    					$(".cont").each(function() {
+	    						this.index = 1;
+	    					})
+	    				});
+	    			})()
+	    		}
+
+	    		function closePage() {
+	    			$(".contentBox").animate({
+	    				opacity: 0
+	    			}, 1000, function() {
+	    				$(this).hide().find(".cont").hide();
+	    			});
+	    			$(".listBox").show();
+	    			contentNow = false;
+	    		}
+
+	    		$(".prev").click(function() {
+	    			prevPage();
+	    		});
+	    		$(".next").click(function() {
+	    			nextPage();
+	    		});
+	    		$(".closeBox").mouseenter(function() {
+	    			$(this).stop(false, true).animate({
+	    				opacity: 1
+	    			});
+	    		})
+	    		$(".closeBox").mouseleave(function() {
+	    			$(this).stop(false, true).animate({
+	    				opacity: 0
+	    			});
+	    		})
+	    		$(".close").click(function() {
+	    			closePage();
+	    		})
+
+	    		$(document).bind("keydown", function(el) {
+	    			if (!contentNow) return false;
+	    			if (alerting) return false;
+	    			switch (el.keyCode) {
+	    				case 27:
+	    					closePage();
+	    					break;
+	    				case 37:
+	    					prevPage();
+	    					break;
+	    				case 39:
+	    					nextPage();
+	    					break;
+	    			}
+	    		})
+
+	    		//内容页功能
+	    		$(".cont").each(function() {
+	    			this.index = 1;
+	    		})
+	    		$(".cont1").bind("click", function() {
+	    			switch (this.index) {
+	    				case 1:
+	    					$(".btn1-1").show();
+	    					this.index++;
+	    					break;
+	    				case 2:
+	    					$(".btn1-1").hide();
+	    					$("#img1-1").hide();
+	    					$(".input").show();
+	    					this.index++;
+	    					break;
+	    			}
+	    		})
+	    		$(".btn1-1 a").hover(function() {
+	    			$(this).html("点我吧！");
+	    		}, function() {
+	    			$(this).html("看不懂？");
+	    		}).click(function() {
+	    			$("#img1-1").show();
+	    			$(this).hide();
+	    			$(".btn1-1 em").show();
+	    			return false;
+	    		})
+	    	})()
+
+	    })
+	    /*end FAB*/
+	
+	</script>
+</body>
+</html>
