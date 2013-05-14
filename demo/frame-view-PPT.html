@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<title>view</title>
+	<style>
+		body{background: #FFF;}
+		.demoW{height: 2000px;position: relative;}
+		.ball{position: absolute;width: 100px;height: 100px;border-radius: 100px;background:#000;}
+		.ball1{top: 200px; left: 10px;}
+		.ball2{top: 160px;left: 400px;}
+		.ball3{top: 300px;left: 800px;}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="demoW">
+		<div class="ball ball1"></div>
+		<div class="ball ball2"></div>
+		<div class="ball ball3"></div>
+	</div>
+<script>
+var num=0;
+function mouseScroll() {
+			var obj = arguments[0];
+			var fn = arguments[1];
+
+			function scrollFn(ev) {
+				var oEvent = ev || event;
+				var bDown = false;
+				if (oEvent.wheelDelta) {
+					down = oEvent.wheelDelta < 0 ? true : false;
+				} else {
+					down = oEvent.detail < 0 ? false : true;
+				}
+				if (down) {
+					fn[0]();
+				} else {
+					fn[1]();
+				}
+				if (oEvent.preventDefault) {
+					oEvent.preventDefault();
+				}
+				return false;
+			}
+			if (obj.addEventListener) {
+				obj.addEventListener("DOMMouseScroll", scrollFn, false);
+			}
+			obj.onmousewheel = scrollFn;
+		}
+	$(function  () {
+		mouseScroll(document,[function  () {
+			setTimeout(function  () {
+				num+=30;
+				$(window).scrollTop(num);
+			},0)
+		},
+		function  () {
+			setTimeout(function  () {
+				if(num==0) return false;
+				num-=30;
+				$(window).scrollTop(num)
+			},0)
+		}]);
+		$(window).scroll(function() {
+			var scrollH = $(window).scrollTop();
+			$(".ball1").css({
+				top: 200+scrollH*1.2+"px",
+				left:10+scrollH*1+"px"
+			})
+			$(".ball2").css({
+				top: 160+scrollH*1.6+"px",
+				left:400+scrollH*0.1+"px"
+			})
+			$(".ball3").css({
+				top: 300+scrollH*0.6+"px",
+				left:800-scrollH*0.6+"px"
+			})
+		})
+	});
+</script>
+</body>
+</html>
