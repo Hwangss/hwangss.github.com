@@ -300,7 +300,7 @@
 	<script>
 	    $(function() {
 	    	//判断是否为webkit和moz内核
-	    	!/firefox|webkit/.test(navigator.userAgent.toLowerCase()) ? $("body").html("<div id='cheapWeb'><p>作者君太烂</p><p>你的<strong>渣渣</strong>浏览器看不了的</p></div>") : (function() {
+	    	!/firefox|webkit/.test(navigator.userAgent.toLowerCase()) ? $("body").html("<div id='cheapWeb'><p>作者君太烂</p><p>你的<strong>渣渣</strong>浏览器看不了的（请用FireFox或webkit内核）</p></div>") : (function() {
 	    		var bodyH = $("body").height(),
 	    			whichPage = 0,
 	    			contentNow = false,
