@@ -17,7 +17,7 @@
 		.hidden{display: none;}
 
 
-		#cheapWeb{position:absolute;top:50%;left:0;width:100%;height: 3em;margin-top:-1.5em;text-align: center;background: #00A3CF;color: #FFF;font-size: 3em;}
+		#cheapWeb{position:absolute;top:50%;left:0;width:100%;height: 5em;margin-top:-2.5em;text-align: center;background: #00A3CF;color: #FFF;font-size: 3em;}
 		#cheapWeb strong{color: rgb(254,188,188);}
 	/*part FAB*/
 		.fab{width: 100%;height:100%;position: absolute;left:0;top:0;z-index:10;font-size: 4em;font-weight:bold;color: #F90;overflow: hidden;background: rgb(26,160,225);}
@@ -302,7 +302,7 @@
 	<script>
 	    $(function() {
 	    	//判断是否为webkit和moz内核
-	    	!/firefox|webkit/.test(navigator.userAgent.toLowerCase()) ? $("body").html("<div id='cheapWeb'><p>作者君太烂</p><p>你的<strong>渣渣</strong>浏览器看不了的（请用FireFox或webkit内核）</p></div>") : (function() {
+	    	!/firefox|webkit/.test(navigator.userAgent.toLowerCase()) ? $("body").html("<div id='cheapWeb'><p>作者君太烂</p><p>你的<strong>渣渣</strong>浏览器看不了的</p><p>请用FireFox或webkit内核</p></div>") : (function() {
 	    		var bodyH = $("body").height(),
 	    			whichPage = 0,
 	    			contentNow = false,
