@@ -10,7 +10,7 @@
 <meta charset=utf-8 />
 <title>Thats What I Am</title>
 <meta name="front-end technicist" content="mss" />
-<link rel="stylesheet" type="text/css" href="css/com.css">
+<link rel="stylesheet" type="text/css" href="http://hwangss.github.io/category/css/resume.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 </head>
 <body>
@@ -20,6 +20,6 @@
 		</div>
 	</div>
 	我是你的张益达^0^
-<script type="text/javascript" src="js/com.js"></script>
+<script type="text/javascript" src="http://hwangss.github.io/category/js/resume.js"></script>
 </body>
 </html>
