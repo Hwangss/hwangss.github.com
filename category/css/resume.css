@@ -1,7 +1,7 @@
 /*=reset Start*/
 html,body,div,span,strong,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{font-size:100%;margin:0;padding:0;}
 article,aside,audio,bdi,canvas,command,datalist,details,figcaption,figure,footer,header,hgroup,keygen,mark,meter,nav,output,progress,rp,rt,ruby,section,source,summary,time,track,video {display:block}
-body{font: 14px/1.7 "Microsoft YaHei","SimSun";color:#fff;background:url(../images/bg.jpg) left top repeat;}
+body{font: 14px/1.7 "Microsoft YaHei","SimSun";color:#fff;background:url(https://f.cloud.github.com/assets/3764024/762917/a8ee3b46-e7f2-11e2-9936-9dc1cc522cc6.jpg) left top repeat;}
 body,html{height: 100%;}
 a{color:#fff;outline:none;text-decoration:none;-webkit-transition:color .3s ease-out;-moz-transition:color .3s ease-out;transition:color .3s ease-out;}
 a:hover{text-decoration: underline;color: #26a}
