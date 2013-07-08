@@ -46,4 +46,4 @@ var mss = {
 		this.cover()
 	}
 }
-mss.init()
+addLoadEvent(mss.init);
