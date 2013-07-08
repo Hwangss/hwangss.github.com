@@ -1,0 +1,25 @@
+<!--
+  @edit:mss.Hwang
+	@time:2013/07/08
+	@say something:I just love the front-end simply, if you want me, please contact me.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Thats What I Am</title>
+<meta name="front-end technicist" content="mss" />
+<link rel="stylesheet" type="text/css" href="css/com.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="coverWrap">
+		<div id="cover" class="m1">
+			<h1 id="coverTitle"><strong id="wordF">F</strong><strong id="word2">2</strong><strong id="wordE">E</strong></h1>
+		</div>
+	</div>
+	我是你的张益达^0^
+<script type="text/javascript" src="js/com.js"></script>
+</body>
+</html>
