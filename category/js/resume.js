@@ -47,6 +47,6 @@ var mss = {
 		this.cover()
 	}
 }
-addEvent(window,"load",function  () {
+$(document).ready(function(){
 	mss.init();
-});
+})
