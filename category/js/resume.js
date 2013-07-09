@@ -9,6 +9,7 @@ var mss = {
 		var coverSte;
 		show(wrap)
 		if (bAnimation) {
+
 			coverStep = 0;
 			addEvent(ele, "oanimationend", function() {
 				coverStep++;
@@ -46,4 +47,6 @@ var mss = {
 		this.cover()
 	}
 }
-addLoadEvent(mss.init);
+addEvent(window,"load",function  () {
+	mss.init();
+});
