@@ -43,7 +43,6 @@
 			{% if site.meta.author.gravatar %}<img src="{{ site.meta.gravatar}}{{ site.meta.author.gravatar }}?s=48" />{% endif %}
 			<figcaption><strong>{{ site.meta.author.name }}</strong></figcaption>
 		</figure>
-		<p><a href="http://johnqing.github.io/posts/about-me.html">about me</a></p>
 	</div>
 	
 	<div class="block block-book">
