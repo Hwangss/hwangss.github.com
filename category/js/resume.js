@@ -44,9 +44,10 @@ var mss = {
 		}
 	},
 	init: function() {
-		this.cover()
+		hide(get("loading"));
+		this.cover();
 	}
 }
-$(document).ready(function(){
+addEvent(window,"load",function  () {
 	mss.init();
-})
+});
