@@ -175,13 +175,12 @@
                     $('.moon').hide()
                     $(".sun").show()
                 }
-                if (/star-1/.test(event.srcElement.className)) {
-                    if(++starCont == 6) {
+                if (/star-1$/.test(event.srcElement.className)) {
+                    if(++starCont == 2) {
                         $('.star-wrap').hide()
                         starCont=0;
                     }
                 }
-
             });
         })
          
