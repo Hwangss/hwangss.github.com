@@ -6,19 +6,20 @@
     <script src="http://s2.vipstatic.com/js/public/jquery-1.10.2.js?201501301" type="text/javascript"></script>
     <script src="http://s2.vipstatic.com/js/public/core2.js?201501301" type="text/javascript"></script>
     <script src="raphael.js"></script>
+    <script src="mockjax.js"></script>
     <style>
         *{margin: 0;padding: 0;}
         #demo{position:relative;width: 590px;height: 590px;margin:100px auto;overflow: hidden;}
         #container,#mask{position:absolute;left:0px;top:0px;width: 100%;height: 100%;transition-timing-function: cubic-bezier(.15,.38,.4,1.08);}
         .u-game-btn,.u-game-gaming,.u-game-count,.u-game-wait,.u-game-loading{position: absolute;left: 50%;top: 50%;-webkit-user-select:none;}
-        .u-game-mask{position:absolute;left: 0;top: 0;pointer-events:none;-webkit-user-select:none;}
+        .u-game-mask{position:absolute;z-index: 100;left: 0;top: 0;pointer-events:none;-webkit-user-select:none;}
         .u-game-btn{cursor:pointer;z-index: 10;}
         .u-game-gaming{z-index: 15;opacity:0;visibility: hidden;transition: .5s ease-in-out;transform:scale(0.90);}
         .u-game-count{z-index: 11;text-align: center;color:#e31144;font-family: Helvetica,tahoma;}
         .u-game-info{z-index: 20;position: absolute;left: 50%;top: 50%;font: 12px/1.5 tahoma,arial,Hiragino Sans GB,WenQuanYi Micro Hei,\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif;text-align: center;}
         .u-game-info img{position:absolute;left: 0;top: 0;z-index: -1;pointer-events:none;}
-        .u-game-info p{color:#f21f60;font-size: 22px;margin-top: 5px;}
-        .u-game-info span{display: block;color:#666;margin:5px 0;}
+        .u-game-info p{color:#f21f60;font-size: 22px;margin-top: .22em;}
+        .u-game-info span{display: block;color:#666;margin:.41em 0;}
         .u-game-info a{display: block;color:#1d94d1;text-decoration: none;}
         .u-game-info a:hover{text-decoration: underline;}
         .center{margin:100px auto;width: 500px;text-align: center;}
@@ -26,7 +27,7 @@
         button:hover{background:#4185f3;color:#fff;}
         button:active{opacity:1;}
         .z-game-doing{opacity:1;visibility:visible;transform:scale(1);}
-        .u-game-loading{-webkit-animation:heart 1.5s infinite;}
+        .u-game-loading{-webkit-animation:heart 1.5s infinite;z-index: 30;}
         @-webkit-keyframes heart{
             50%{-webkit-transform:scale(1.05)}
         }
@@ -43,10 +44,10 @@
     </div>
     <script>
         $(function() {
-            function Turntable(option, picW, picH) {
+            function Turntable(option) {
                 // check Raphael is already load
                 if (typeof Raphael !== 'function') {
-                    console && console.log('%cRaphael is undefined!','color:#f00;font-size:18px;text-shadow:1px 1px #f10180;');
+                    console && console.log('%cRaphael is undefined!', 'color:#f00;font-size:18px;text-shadow:1px 1px #f10180;');
                     return false;
                 }
 
@@ -56,7 +57,7 @@
                 }
 
                 // 图片预加载
-                function imgload(src, cb,opt) {
+                function imgload(src, cb, opt) {
                     if (typeof src == 'string') {
                         var img = new Image();
                         if (opt) {
@@ -73,7 +74,7 @@
                     } else if (typeof src == 'object' && src.constructor == [].constructor) {
                         var arr = [];
                         for (var i = 0; i < src.length; i++) {
-                            (function  (num) {
+                            (function(num) {
                                 arr[num] = new Image();
                                 arr[num].onload = arr[num].onerror = function() {
                                     cb && cb($(arr[num]));
@@ -88,10 +89,10 @@
                 }
 
                 // 检测是否支持transition，支持的话才用更好的呈现效果
-                var aBrowser = ['webkitTransition', 'mozTransition', 'oTransition', 'msTransition','transition'];
-                var aBrowserPre = ['-webkit-','-moz-','-o-','-ms-',''];
+                var aBrowser = ['webkitTransition', 'mozTransition', 'oTransition', 'msTransition', 'transition'];
+                var aBrowserPre = ['-webkit-', '-moz-', '-o-', '-ms-', ''];
                 var isTransition = false;
-                var transitionEnd ='';
+                var transitionEnd = '';
                 var browserPre = '';
 
                 for (var i = 0; i < aBrowser.length; i++) {
@@ -109,13 +110,14 @@
                     mask: $("#mask"),
                     count: 2,
                     canPlay: true,
-                    resource:[]
+                    resource: [],
+                    speed: 3000
                 }
 
-                $.extend(opt,option)
+                $.extend(opt, option)
 
-                if(opt.resource.constructor != [].constructor || opt.resource.length == 0){
-                    console && console.log('%cresource can not find!','color:#f00;font-size:18px;text-shadow:1px 1px #f10180;');
+                if (opt.resource.constructor != [].constructor || opt.resource.length == 0) {
+                    console && console.log('%cresource can not find!', 'color:#f00;font-size:18px;text-shadow:1px 1px #f10180;');
                     return false;
                 }
 
@@ -191,38 +193,38 @@
                 }
 
                 // 游戏前的准备
-                function gameReady () {
+                function gameReady() {
                     var loadingR = rTrans(541);
-                    var resourceImgArray = ['btn.png','gaming.png','wait.png']
+                    var resourceImgArray = ['btn.png', 'gaming.png', 'wait.png']
                     m.append($('<img class="u-game-loading" src="loading.png">').css({
                         width: loadingR,
                         height: loadingR,
                         marginLeft: -loadingR / 2,
                         marginTop: -loadingR / 2
                     })).append($('<img class="u-game-mask" src="bg.png">').css({
-                        width: r*2,
-                        height: r*2
+                        width: r * 2,
+                        height: r * 2
                     }))
-                    
-                    for(var i=0,len=opt.resource.length;i<len;i++){
+
+                    for (var i = 0, len = opt.resource.length; i < len; i++) {
                         resourceImgArray.push(opt.resource[i].pic)
                     }
 
                     var loadPic = 0;
                     var needLoadCount = resourceImgArray.length;
-                    imgload(resourceImgArray,function  (a) {
-                        loadPic +=1 ;
-                        if(loadPic == needLoadCount) {
+                    imgload(resourceImgArray, function(a) {
+                        loadPic += 1;
+                        if (loadPic == needLoadCount) {
                             gameInit();
                             drawMain();
-                            $(".u-game-loading").remove();
+                            $(".u-game-loading").fadeOut();
                         }
                     })
                 }
-
                 gameReady();
+
                 // 绘制各内容
-                function drawMain () {
+                function drawMain() {
                     for (var j = 0; j < areaNum; j++) {
                         var t = aArea[j];
 
@@ -278,7 +280,7 @@
                 var aPlay = $();
 
                 // 游戏能玩的时候做的初始化
-                function gameCanPlay () {
+                function gameCanPlay() {
                     // create btn for game
                     var btnW = btnH = rTrans(210);
                     var btn = imgload('btn.png', function(img) {
@@ -320,49 +322,61 @@
 
                     aPlay = btn.add(count).add(gaming);
 
-                    // 记录已经转了多少个区间的角度
+                    // 记录已经转了多少个区间
                     var already = 0;
 
                     // 判断当前转盘动画是否结束
                     var isDone = true;
 
-                    function gameFinish () {
+                    // 动画结束的回调
+                    function gameFinish() {
                         isDone = true;
                         gaming.removeClass('z-game-doing');
-                        --opt.count > 0 ? count.html(opt.count):waitControl.done();
+                        --opt.count > 0 ? count.html(opt.count) : waitControl.done();
                     }
 
+                    // 如果支持transition则监听transitionend
                     if (isTransition) {
                         opt.container[0].addEventListener(transitionEnd, function(e) {
                             gameFinish();
                         })
                     }
 
-                    btn.add(count).click(function() {
-                        if (!isDone) return;
-                        isDone = false;
-                        gaming.addClass('z-game-doing');
-                        var round = Math.floor(Math.random()*areaNum+1) + areaNum*3;
+                    window.gameAnimate = function(target) {
+                        // 这次需要转圈的区间数
+                        var round = target + areaNum * 3;
                         already += round;
-                        var speed = 3000;
 
+                        // 旋转时间
+                        var speed = opt.speed;
+
+                        // 高级浏览器利用css3旋转
                         if (isTransition) {
-                            var obj={};
-                            obj[browserPre+'transform']='rotate(' + (baseAngle * already) + 'deg)';
-                            obj[browserPre+'transition-duration']=(speed+500)+'ms';
+                            var obj = {};
+                            obj[browserPre + 'transform'] = 'rotate(' + (baseAngle * already) + 'deg)';
+                            obj[browserPre + 'transition-duration'] = (speed + 500) + 'ms';
                             opt.container.css(obj);
                         } else {
+                            // 不支持transition的利用svg || VML自身的绘制来渲染旋转，效果不太好
+                            // 色块组和图片组以圆心为圆点对自身做旋转
                             st1.animate({
                                 transform: 'r' + (baseAngle * already) + ' ' + r + ' ' + r
-                            }, speed,'linear');
+                            }, speed, 'linear');
                             st2.attr({
                                 transform: ''
                             }).animate({
                                 transform: 'r' + (baseAngle * round) + ' ' + r + ' ' + r
-                            }, speed,'linear', function() {
+                            }, speed, 'linear', function() {
+                                // 因为图片原来就已经有自身的旋转角度，在进行绕圆心旋转时自身的旋转会没了
+                                // 所以当旋转动画结束后需要把原来属于这个位置的图片的位置、旋转角等属性来覆盖一次
+                                // 例如我原来是在1位置的图片经过旋转后到达3的位置，那么我就需要读取原来3位置的图片的初始位置以及旋转角
                                 for (var i = 0; i < aArea.length; i++) {
-                                    var rr = already % areaNum
+                                    // 获取这次相对于开始前偏移了多少个区间
+                                    var rr = already % areaNum;
+
+                                    // 计算对应需要获取的区间值
                                     var next = i + rr >= areaNum ? i + rr - areaNum : i + rr;
+
                                     aArea[i].img.attr({
                                         transform: '',
                                         x: aArea[next].imgX,
@@ -375,7 +389,9 @@
                                 gameFinish();
                             })
 
+                            // 文字部分太丑，直接隐藏
                             st3.hide();
+                            // 跟图片做相同的操作，只是需要增加一些文字自身的偏移量
                             setTimeout(function() {
                                 for (var i = 0; i < aArea.length; i++) {
                                     var rr = already % areaNum
@@ -385,27 +401,52 @@
                                         transform: '',
                                         x: aArea[next].imgX + halfPicW,
                                         y: aArea[next].imgY + halfPicH
-                                    }).transform(aArea[next].cRotate + 't0 -' + (halfPicH + 18 / 295 * r))
+                                    }).transform(aArea[next].cRotate + 't0 -' + (halfPicH + rTrans(18)))
                                 };
                                 st3.show()
-                            }, speed-20)
+                            }, speed - 20)
                         }
+                    }
+
+                    btn.add(count).click(function() {
+                        // 动画期间不允许多次触发
+                        if (!isDone) return;
+                        isDone = false;
+
+                        // 动画loading状态
+                        gaming.addClass('z-game-doing');
+
+                        $.mockjax({
+                            url: "/aa",
+                            responseTime: 200,
+                            responseText: 'gameAnimate(' + Math.floor(Math.random() * areaNum + 1) + ')'
+                        });
+
+                        // 执行请求获取抽奖情况
+                        $.ajax({
+                            url: '/aa',
+                            type: 'get',
+                            dataType: 'jsonp',
+                            jsonpCallback: 'gameAnimate'
+                        })
+
                     })
 
                     return {
-                        reset:function  () {
-                            $.extend(opt,option)
+                        reset: function() {
+                            $.extend(opt, option)
                             count.html(opt.count)
                         }
                     }
                 }
 
                 // 游戏不能玩时做的初始化
-                function gameCanNotPlay () {
+                function gameCanNotPlay() {
                     // create game wait
                     var waitW = waitH = rTrans(198);
                     var waitConW = rTrans(145);
                     var waitConH = rTrans(120);
+                    var titleFz = rTrans(22);
                     var gameInfo = $('<div class="u-game-info"/>');
                     gameInfo
                         .css({
@@ -413,7 +454,8 @@
                             height: waitConH,
                             marginLeft: -waitW / 2,
                             marginTop: -waitH / 2,
-                            padding: (waitH-waitConH)/2 + 'px ' + (waitW-waitConW)/2 + 'px'
+                            padding: (waitH - waitConH) / 2 + 'px ' + (waitW - waitConW) / 2 + 'px',
+                            fontSize: rTrans(12)
                         })
                         .hide()
                         .appendTo(m);
@@ -427,19 +469,19 @@
                     var txt = $('<div />').appendTo(gameInfo);
 
                     return {
-                        done:function  () {
+                        done: function() {
                             gameInfo.fadeIn();
                             aPlay.fadeOut();
-                            txt.html('<p>本场抽奖次数已用完</p><span>下一场 19:00 - 22:00</span><a href="http://www.vip.com" target="_blank">去特卖会逛逛>></a>');
+                            txt.html('<p style="font-size:' + titleFz + 'px;">本场抽奖次数已用完</p><span>下一场 19:00 - 22:00</span><a href="http://www.vip.com" target="_blank">去特卖会逛逛>></a>');
                             return this;
                         },
-                        wait:function  () {
+                        wait: function() {
                             gameInfo.fadeIn();
                             aPlay.fadeOut();
-                            txt.html('<p>抽奖未开始</p><span>每天两场抽大奖<br>9:00、19:00准时开始</span><a href="http://www.vip.com" target="_blank">去特卖会逛逛>></a>');
+                            txt.html('<p style="font-size:' + titleFz + 'px;">抽奖未开始</p><span>每天两场抽大奖<br>9:00、19:00准时开始</span><a href="http://www.vip.com" target="_blank">去特卖会逛逛>></a>');
                             return this;
                         },
-                        hide:function  () {
+                        hide: function() {
                             gameInfo.fadeOut();
                             return this;
                         }
@@ -451,22 +493,21 @@
                 var gameControl = null;
 
                 // 游戏是否能开始
-                function gameInit () {
-                    if(opt.canPlay && opt.count > 0) {
+                function gameInit() {
+                    if (opt.canPlay && opt.count > 0) {
                         gameControl = gameCanPlay();
-                    }
-                    else {
+                    } else {
                         waitControl.wait();
                     }
                 }
 
                 return {
-                    reset:function  () {
+                    reset: function() {
                         aPlay.fadeIn();
                         gameControl.reset();
                         waitControl.hide();
                     },
-                    stop:function  () {
+                    stop: function() {
                         waitControl.wait();
                     }
                 }
@@ -499,13 +540,13 @@
                 }]
             }
 
-            var game = Turntable(opt, 86, 110)
+            var game = Turntable(opt)
 
-            $("#j-wait").click(function  () {
+            $("#j-wait").click(function() {
                 game.stop();
             })
 
-            $("#j-play").click(function  () {
+            $("#j-play").click(function() {
                 game.reset();
             })
         })
