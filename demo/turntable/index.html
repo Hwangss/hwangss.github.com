@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://s2.vipstatic.com/js/public/jquery-1.10.2.js?201501301" type="text/javascript"></script>
+    <script src="http://s2.vipstatic.com/js/public/core2.js?201501301" type="text/javascript"></script>
+    <script src="raphael.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+        #demo{position:relative;width: 590px;height: 590px;margin:100px auto;overflow: hidden;}
+        #container,#mask{position:absolute;left:0px;top:0px;width: 100%;height: 100%;transition-timing-function: ease-out;}
+        .u-game-btn,.u-game-gaming,.u-game-count,.u-game-wait{position: absolute;left: 50%;top: 50%;-webkit-user-select:none;}
+        .u-game-mask{position:absolute;left: 0;top: 0;pointer-events:none;-webkit-user-select:none;}
+        .u-game-btn{cursor:pointer;z-index: 10;}
+        .u-game-gaming{z-index: 15;opacity:0;visibility: hidden;transition: .5s ease-in-out;transform:scale(0.90);}
+        .u-game-count{z-index: 11;text-align: center;color:#e31144;font-family: Helvetica,tahoma;}
+        .u-game-info{z-index: 20;position: absolute;left: 50%;top: 50%;font: 12px/1.5 tahoma,arial,Hiragino Sans GB,WenQuanYi Micro Hei,\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif;text-align: center;}
+        .u-game-info img{position:absolute;left: 0;top: 0;z-index: -1;pointer-events:none;}
+        .u-game-info p{color:#f21f60;font-size: 22px;margin-top: 5px;}
+        .u-game-info span{display: block;color:#666;margin:5px 0;}
+        .u-game-info a{display: block;color:#1d94d1;text-decoration: none;}
+        .u-game-info a:hover{text-decoration: underline;}
+        .center{margin:100px auto;width: 500px;text-align: center;}
+        button{background:#ccc;border:0 none;color:#333;padding:5px 10px;font-size: 14px;font-family: microsoft yahei;margin:0 15px;transition: .3s linear;cursor:pointer;outline:none;opacity:.8;}
+        button:hover{background:#4185f3;color:#fff;}
+        button:active{opacity:1;}
+        .z-game-doing{opacity:1;visibility:visible;transform:scale(1);}
+    </style>
+</head>
+<body>
+    <div class="center">
+        <button id="j-wait">未开始</button>
+        <button id="j-play">可以玩</button>
+    </div>
+    <div id="demo"> 
+        <div id="container"></div>
+        <div id="mask"></div>
+    </div>
+    <script>
+        $(function() {
+            function Turntable(opt, picW, picH) {
+                // check Raphael is already load
+                if (typeof Raphael !== 'function') {
+                    console && console.log('Raphael is undefined!')
+                    return false;
+                }
+
+                // 响应式转盘，根据原尺寸进行各种比例的缩放，以原尺寸半径295px跟当前半径作为比例缩放
+                function rTrans(num) {
+                    return num / 295 * r
+                }
+
+                // 图片预加载
+                function imgload(src,cb,opt) {
+                    var img = new Image();
+                    if(opt) {
+                        img.width = opt.w;
+                        img.height = opt.h;
+                    }
+                    img.onload = function() {
+                        cb && cb($(img));
+                        img.onload = null;
+                    }
+                    img.src = src;
+                    return $(img);
+                }
+
+                // 检测是否支持transition，支持的话才用更好的呈现效果
+                var aBrowser = ['webkitTransition', 'mozTransition', 'msTransition','transition'];
+                var aBrowserPre = ['-webkit-','-moz-','-ms-',''];
+                var isTransition = false;
+                var transitionEnd ='';
+                var browserPre = '';
+
+                for (var i = 0; i < aBrowser.length; i++) {
+                    if (aBrowser[i] in document.createElement('div').style) {
+                        isTransition = true;
+                        transitionEnd = aBrowser[i] + 'End';
+                        browserPre = aBrowserPre[i];
+                        break;
+                    }
+                }
+
+                // base value
+                var r = opt.container.width() / 2;
+
+                // init canvas, c is the main control rect, m is mask for turntable
+                var c = Raphael(opt.container[0], '100%', '100%');
+                var m = opt.mask;
+
+                // create 3 set for save dynamic elements
+                var st1 = c.set();
+                var st2 = c.set();
+                var st3 = c.set();
+
+                // 角度转弧度，因为Math的三角函数用的是弧度
+                var angleToArc = 2 * Math.PI / 360;
+
+                // 需要生成的转盘区域数
+                var areaNum = opt.resource.length;
+
+                // 每个区域的角度值
+                var baseAngle = 360 / areaNum;
+
+                // 需要保持垂直箭头指向区域的中间，所以当区域数的一半为偶数时作基础角度一半的偏移值
+                var angleFix = areaNum / 2 % 2 == 0 ? baseAngle / 2 : 0;
+
+                // 素材图片的尺寸，不同区域设计做出相对应的调整
+                var picW,
+                    picH;
+
+                if (areaNum <= 6) {
+                    picW = rTrans(120);
+                    picH = rTrans(110);
+                } else if (areaNum >= 7 && areaNum <= 8) {
+                    picW = rTrans(86);
+                    picH = rTrans(110);
+                } else if (areaNum > 8) {
+                    picW = rTrans(74);
+                    picH = rTrans(96);
+                }
+
+                var halfPicW = picW / 2;
+                var halfPicH = picH / 2;
+
+                // 图片相对于圆心的位移值
+                var picTranslate = rTrans(110) + halfPicH;
+
+                // 每个区域的数组集合
+                var aArea = [];
+
+                // 初始化一些区域基础数据
+                for (var i = 0; i < areaNum; i++) {
+                    // 当前边需要转动的角度，要减去修正偏移角
+                    var lineAngle = baseAngle * i - angleFix;
+
+                    // 区域内容需要转动的角度，由于需要居中显示，所以加上基础角的一半来达到居中
+                    var contAngle = lineAngle + baseAngle / 2;
+
+                    aArea[i] = {
+                        // 根据三角函数公式计算出当前转动边在圆上的坐标（相对于圆心）
+                        x: r * Math.cos(lineAngle * angleToArc) + r,
+                        y: r * Math.sin(lineAngle * angleToArc) + r,
+                        // 内容图片及文字
+                        pic: opt.resource[i].pic,
+                        txt: opt.resource[i].txt,
+                        // 当前线段原来需要转动的角度，用来判断绘制时最后一边是否需要从0变成360度来进行正确的绘制
+                        angle: baseAngle * i,
+                        // 当前区域内容中心点在圆上的坐标（相对于圆心）
+                        cx: Math.cos(contAngle * angleToArc) * picTranslate,
+                        cy: Math.sin(contAngle * angleToArc) * picTranslate
+                    }
+                }
+
+                // 绘制各内容
+                for (var j = 0; j < areaNum; j++) {
+                    var t = aArea[j];
+
+                    // 判断边界点，到底就换一下，很简单，不阐述了。0变360是因为最后一个区域要绘制边
+                    var next = j + 1 == areaNum ? 0 : j + 1;
+                    var nextAngle = aArea[next].angle == 0 ? 360 : aArea[next].angle;
+
+                    t.bg = c.path(
+                        // 反正就是画，移动到第一条线段的点，画一个弧形到第二个点，然后连接圆心成为扇形
+                        Raphael.fullfill("M{x} {y}A{r} {r} 0 0 1 {next.x} {next.y}L{r} {r}Z", {
+                            x: t.x,
+                            y: t.y,
+                            r: r,
+                            next: {
+                                x: aArea[next].x,
+                                y: aArea[next].y
+                            }
+                        })
+                    ).attr({
+                        stroke: "#ffb74c",
+                        'stroke-width': ".25px",
+                        fill: j % 2 == 1 ? "#fedd4c" : "#fffaef",
+                        'box-shadow': "inset 0 0 10px #000"
+                    })
+
+                    // 内容根据自身需要旋转的角，就是两角间的差，由于图片默认是垂直与x轴的，所以默认加上90度，再减去修正角。
+                    t.cRotate = 'r' + ((t.angle + nextAngle) / 2 + 90 - angleFix);
+
+                    // 图片初始绘制坐标，由于坐标是相对于圆心的，所以需要加上半径长度来校正实际需要绘制的坐标值，因为绘制时从左上角开始的。
+                    t.imgX = r + t.cx - halfPicW;
+                    t.imgY = r + t.cy - halfPicH;
+
+                    // 文字初始绘制坐标，文字的坐标是根据自身的一半作为基准点的，所以加上一般的图片宽高保证在图片的中间。
+                    t.txtX = t.imgX + halfPicW;
+                    t.txtY = t.imgY + halfPicH;
+
+                    // 赋值没什么好说的，就是把图片弄到那个点再旋转一下
+                    t.img = c.image(t.pic, t.imgX, t.imgY, picW, picH).transform(t.cRotate);
+
+                    // 除了赋值外，由于位置是在图片中心的，所以需要加上偏移量来达到显示在图片头部的效果。
+                    t.text = c.text(t.txtX, t.txtY, t.txt).transform(t.cRotate + 't0 -' + (halfPicH + rTrans(18))).attr({
+                        'font': rTrans(16) + 'px "microsoft yahei"'
+                    })
+
+                    // 把对应的对象放到各自的集合中
+                    st1.push(t.bg)
+                    st2.push(t.img)
+                    st3.push(t.text)
+                }
+
+
+                // create mask around
+                var bg = imgload('bg.png', function(img) {
+                    img.addClass('u-game-mask');
+                    m.append(img);
+                }, {
+                    w: r*2,
+                    h: r*2
+                });
+
+                // 游戏能玩的时候做的初始化
+                function gameCanPlay () {
+                    // create btn for game
+                    var btnW = btnH = rTrans(210);
+                    var btn = imgload('btn.png', function(img) {
+                        img.addClass('u-game-btn').css({
+                            marginLeft: -btnW / 2,
+                            marginTop: -btnH / 2 - rTrans(10)
+                        })
+                        m.append(img);
+                    }, {
+                        w: btnW,
+                        h: btnH
+                    });
+
+                    // create count for game
+                    var count = $('<span class="u-game-count"></span>')
+                        .css({
+                            width: rTrans(19),
+                            'line-height': rTrans(20) + 'px',
+                            marginLeft: rTrans(-16),
+                            marginTop: rTrans(9),
+                            fontSize: rTrans(15)
+                        })
+                        .html(opt.count)
+                        .appendTo(m);
+
+                    // create game doing
+                    var gamingW = rTrans(198);
+                    var gamingH = rTrans(226);
+                    var gaming = imgload('gaming.png', function(img) {
+                        img.addClass('u-game-gaming').css({
+                            marginLeft: -gamingW / 2,
+                            marginTop: -gamingH / 2 - rTrans(14)
+                        })
+                        m.append(img);
+                    }, {
+                        w: gamingW,
+                        h: gamingH
+                    });
+
+                    // 记录已经转了多少个区间的角度
+                    var already = 0;
+
+                    // 判断当前转盘动画是否结束
+                    var isDone = true;
+                    function gameFinish () {
+                        isDone = true;
+                        gaming.removeClass('z-game-doing');
+                        --opt.count > 0 ? count.html(opt.count):waitControl.done();
+                    }
+                    btn.click(function() {
+                        if (!isDone) return;
+                        isDone = false;
+                        gaming.addClass('z-game-doing');
+                        var round = parseInt(1) + areaNum*2;
+                        already += round;
+                        var speed = 1800;
+
+                        if (isTransition) {
+                            opt.container.on(transitionEnd,function  () {                            
+                                gameFinish();
+                            })
+                            var obj={};
+                            obj[browserPre+'transform']='rotate(' + (baseAngle * already) + 'deg)';
+                            obj[browserPre+'transition-duration']=(speed+500)+'ms';
+                            opt.container.css(obj);
+                        } else {
+                            st1.animate({
+                                transform: 'r' + (baseAngle * already) + ' ' + r + ' ' + r
+                            }, speed,'linear');
+                            st2.attr({
+                                transform: ''
+                            }).animate({
+                                transform: 'r' + (baseAngle * round) + ' ' + r + ' ' + r
+                            }, speed,'linear', function() {
+                                for (var i = 0; i < aArea.length; i++) {
+                                    var rr = already % areaNum
+                                    var next = i + rr >= areaNum ? i + rr - areaNum : i + rr;
+                                    aArea[i].img.attr({
+                                        transform: '',
+                                        x: aArea[next].imgX,
+                                        y: aArea[next].imgY
+                                    }).animate({
+                                        transform: aArea[next].cRotate
+                                    })
+                                };
+
+                                gameFinish();
+                            })
+
+                            st3.hide();
+                            setTimeout(function() {
+                                for (var i = 0; i < aArea.length; i++) {
+                                    var rr = already % areaNum
+                                    var next = i + rr >= areaNum ? i + rr - areaNum : i + rr;
+
+                                    aArea[i].text.attr({
+                                        transform: '',
+                                        x: aArea[next].imgX + halfPicW,
+                                        y: aArea[next].imgY + halfPicH
+                                    }).transform(aArea[next].cRotate + 't0 -' + (halfPicH + 18 / 295 * r))
+                                };
+                                st3.show()
+                            }, speed-20)
+                        }
+                    })
+                }
+
+                // 游戏不能玩时做的初始化
+                function gameCanNotPlay () {
+                    // create game wait
+                    var waitW = waitH = rTrans(198);
+                    var waitConW = rTrans(145);
+                    var waitConH = rTrans(120);
+                    var gameInfo = $('<div class="u-game-info"/>');
+                    gameInfo
+                        .css({
+                            width: waitConW,
+                            height: waitConH,
+                            marginLeft: -waitW / 2,
+                            marginTop: -waitH / 2,
+                            padding: (waitH-waitConH)/2 + 'px ' + (waitW-waitConW)/2 + 'px'
+                        })
+                        .hide()
+                        .appendTo(m);
+                    var wait = imgload('wait.png', function(img) {
+                        gameInfo.append(img);
+                    }, {
+                        w: waitW,
+                        h: waitH
+                    });
+
+                    var txt = $('<div />').appendTo(gameInfo);
+
+                    return {
+                        done:function  () {
+                            gameInfo.show();
+                            txt.html('<p>本场抽奖次数已用完</p><span>下一场 19:00 - 22:00</span><a href="http://www.vip.com" target="_blank">去特卖会逛逛>></a>');
+                        },
+                        wait:function  () {
+                            gameInfo.show();
+                            txt.html('<p>抽奖未开始</p><span>每天两场抽大奖<br>9:00、19:00准时开始</span><a href="http://www.vip.com" target="_blank">去特卖会逛逛>></a>');
+                        }
+                    }
+                }
+
+                // 控制等待文案
+                var waitControl = gameCanNotPlay();
+
+                // 游戏是否能开始
+                if(opt.canPlay) {
+                    gameCanPlay();
+                }
+                else {
+                    waitControl.wait();
+                }
+            }
+
+            var opt = {
+                //HTML Element
+                container: $('#container'),
+                mask: $("#mask"),
+                count: 2,
+                canPlay: true,
+                resource: [{
+                    pic: '1.png',
+                    txt: '我是个小1'
+                }, {
+                    pic: '2.png',
+                    txt: '我是个很大的2'
+                }, {
+                    pic: '3.png',
+                    txt: '我33333'
+                }, {
+                    pic: '4.png',
+                    txt: '我不要4444'
+                }, {
+                    pic: '5.png',
+                    txt: '我33333'
+                }, {
+                    pic: '6.png',
+                    txt: '我不要4444'
+                }]
+            }
+
+            Turntable(opt, 86, 110)
+
+            $("#j-wait").click(function  () {
+                $("#container,#mask").empty();
+                opt.canPlay=false;
+                Turntable(opt, 86, 110)
+            })
+        })
+    </script>
+</body>
+</html>
