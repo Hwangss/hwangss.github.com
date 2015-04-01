@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询你的bug吧少年</title>
+    <style>
+        body{margin:0;font:14px/32px tahoma,arial,Hiragino Sans GB,WenQuanYi Micro Hei,'\5FAE\8F6F\96C5\9ED1','\5B8B\4F53',sans-serif;}
+        *{box-sizing:border-box;margin: 0;padding: 0;}
+        *[class*='ui-']{box-sizing:content-box;}
+        .w{position:fixed;left: 0;top: 0;right: 0;bottom: 0;width: 800px;height: 600px;border:1px solid #dbdbdb;margin:auto;border-radius:3px;padding:20px 50px;}
+        .item{text-align: center;margin-bottom: 20px;}
+        .item .ui-input[type="text"]{width: calc(100% - 22px);}
+        .ui-tips-nor{margin-bottom: 20px;}
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #b2b2b2;
+            border-radius: 4px;
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+        }
+
+        .form-control:focus {
+            border-color: #666;
+            outline: 0;
+        }
+
+    </style>
+    <link rel="stylesheet" href="http://bootstrap.vipstatic.com/css/public/ui/1/vui.css">
+</head>
+<body>
+    <div class="w">
+        <div class="ui-tips-nor ui-tips2" id="j-tips-normal">
+            <p class="info"><i class="vipFont if-info">&#xe607;</i>等着我给你点提示吧。</p>
+        </div>
+        <div class="ui-tips-nor f-hidden ui-tips1" id="j-tips-empty">
+            <p class="info"><i class="vipFont if-sigh">&#xe603;</i>你肯定哪里没填了。</p>
+        </div>
+        <div class="ui-tips-nor ui-tips3 f-hidden" id="j-tips-success">
+            <p class="info"><i class="vipFont if-success">&#xe602;</i>成功是成功了，结果有问题就肯定是你的问题。</p>
+        </div>
+        <div class="item">            
+            <input type="text" class="ui-input" id="j-email" placeholder="输入你的邮箱名，可以不用打@vipshop.com，或者你可以用下面的select">
+        </div>
+        <div class="item">
+            <select name="j-select" id="j-select" class="form-control">
+                <option value="null">请选择你要查询的前端</option>
+                <option value="eason.chen">陈弋</option>
+                <option value="jiayao.li">黎嘉尧</option>
+                <option value="channing.liu">刘畅临</option>
+                <option value="yoven.xu">许耀云</option>
+                <option value="mss.huang">黄家权</option>
+                <option value="zhenbo.zheng">郑振波</option>
+                <option value="mark.li">李国猛</option>
+                <option value="zhifeng01.cao">曹志锋</option>
+                <option value="zakk.ye">叶志健</option>
+                <option value="yundong.xiao">肖运东</option>
+                <option value="xiaoling01.cheng">程小玲</option>
+                <option value="xiaolian.cao">曹晓连</option>
+                <option value="xiaojie.gao">高晓杰</option>
+                <option value="ww.wu">吴炜巍</option>
+                <option value="winsy.zhang">张颖斯</option>
+                <option value="vk.xiang">香伟健</option>
+                <option value="tinda.liu">刘亚廷</option>
+                <option value="terry.fan">范斌</option>
+                <option value="sam.zeng">曾德山</option>
+                <option value="koal.huang">黄宇聪</option>
+                <option value="asher.huang">黄厚辉</option>
+                <option value="laury.lu">卢欢</option>
+            </select>
+        </div>
+        <div class="item">
+            <label for="date" class="ui-label">请选择你需要查找的时间区域（如果你是捞B浏览器，请按照yyyy-mm-dd来输入）：</label>
+        </div>
+        <div class="item">
+            <input type="date" class="ui-input" id="j-date-from" value="2015-01-01"> 至 <input type="date" class="ui-input" id="j-date-to" value="2015-04-01">
+        </div>
+        <div class="item">
+            <button class="ui-btn-primary ui-btn-medium" id="j-check">查询</button>
+        </div>
+    </div>
+    <script>
+        (function(window) {
+            var tool;
+            var config;
+
+            tool = {
+                ui: {
+                    tips: {
+                        showtips: function(target) {
+                            var tips = Array.prototype.slice.call(document.querySelectorAll('.ui-tips-nor'));
+                            tips.forEach(function(a) {
+                                var str = a.className;
+                                str = str.replace(/f-hidden/g, '')
+                                if (target.id != a.id) {
+                                    str += ' f-hidden';
+                                }
+                                a.className = str;
+                            })
+                        },
+                        warning: function() {
+                            tool.ui.tips.showtips(config.tips.empty);
+                        },
+                        success: function() {
+                            tool.ui.tips.showtips(config.tips.success);
+                        }
+                    }
+                },
+                ev: {
+                    init: function() {
+                        tool.ev.query();
+                    },
+                    query: function() {
+                        config.control.check.addEventListener('click', function() {
+                            var data = tool.data.getValue();
+                            if (typeof data == 'string') {
+                                tool.ui.tips.warning();
+                            } else {
+                                tool.ev.frameValue(data);
+                                tool.ui.tips.success();
+                            }
+                        }, false);
+                    },
+                    frameValue: function(data) {
+                        var url = 'https://bugzilla.tools.vipshop.com/bugzilla/buglist.cgi?resolution=FIXED&emailtype1=substring&chfieldto={to}&emailassigned_to1=1&query_format=advanced&chfieldfrom={from}&email1={email}';
+                        var email = data.email;
+                        if (data.email == '@vipshop.com') {
+                            email = data.select;
+                        }
+                        url = url.replace(/\{to\}/, data.to).replace(/\{from\}/, data.from).replace(/\{email\}/,email);
+                        window.open(url);
+                    }
+                },
+                data: {
+                    getValue: function() {
+                        if (!config.inputs.dateFrom.value || !config.inputs.dateTo.value || !(config.inputs.email.value || config.inputs.select.value != 'null')) {
+                            return 'something empty!'
+                        }
+                        var sEmail = config.inputs.email.value;
+                        if (sEmail.indexOf('@vipshop.com') == -1) {
+                            sEmail += '@vipshop.com';
+                        }
+
+                        return {
+                            email: sEmail,
+                            from: config.inputs.dateFrom.value,
+                            to: config.inputs.dateTo.value,
+                            select: config.inputs.select.value
+                        }
+                    }
+                },
+                config: function() {
+                    config = {
+                        control: {
+                            check: document.getElementById('j-check')
+                        },
+                        inputs: {
+                            dateFrom: document.getElementById('j-date-from'),
+                            dateTo: document.getElementById('j-date-to'),
+                            email: document.getElementById('j-email'),
+                            select: document.getElementById('j-select')
+                        },
+                        tips: {
+                            empty: document.getElementById('j-tips-empty'),
+                            normal: document.getElementById('j-tips-normal'),
+                            success: document.getElementById('j-tips-success')
+                        }
+                    }
+                }
+            }
+            window.onload = function() {
+                tool.config();
+                tool.ev.init();
+            }
+        })(window)
+    </script>
+</body>
+</html>

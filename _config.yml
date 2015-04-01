@@ -1,56 +1,61 @@
-markdown: kramdown
-pygments: true
-safe: false
-permalink: /posts/:title.html
+#
+# More configuration examples at:
+# http://jekyllrb.com/docs/configuration/
+#
+
+
+#
+# Jekyll basic configurations
+#
+
+timezoon: Asia/Hong_kong
+permalink: /:title/
+markdown: redcarpet
+highlighter: rouge
+
+#
+# Jekyll serve settings
+#
+
+
+#
+# Additional Markdown settings
+#
+redcarpet:
+    extensions:
+        - no_intra_emphasis
+        - fenced_code_blocks
+        - autolink
+        - tables
+        - strikethrough
+        - superscript
+        - smart
+        - space_after_headers
+        - footnotes
+        - underline
+
 exclude:
-  - README.md
+    - README.md
+    - Gruntfile.js
+    - package.json
+    - node_modules
 
-name: Hwangss
-host: hwangss.github.com
-desc: 页面仔之路
 
-book:
-  - name:  JavaScript模式
-    imgid: 11337059
-    bid: 11506062
+#
+# User defined settings
+#
 
-  - name:  基于MVC的JavaScript Web富应用开发
-    imgid: 10427681
-    bid: 10733304
+# Site name
+name: mss
 
-  - name:  JavaScript语言精粹
-    imgid: 3651235
-    bid: 3590768
-    
-    
-custom:
-    category:
-        f2e:  前端架构
-        css:  css
-        js:  js
-        readbook:  读书笔记
-    categories:
-      - name:  f2e
-        title: 前端架构
+# Site description and keywords, will appear in the document meta and Atom feed subtitle
+description: Mss - 相信世界始终美好。
+keywords: 猫叔,mss,web前端,前端,HTML,CSS,JavaScript,js,设计
 
-      - name:  css
-        title: css
+# Assets path used in templates
+assets: ./assets
 
-      - name:  js
-        title: js
-
-      - name:  readbook
-        title: 读书笔记
-
-meta:
-    author:
-        name: 黄家权
-        email: 440362682@qq.com
-        disqus: hwangss                            # Disqus缩略标识
-        gcse: 013272657981146924125:j-9xsn0usau     # Google自定义搜索标识ID
-        github: hwangss                            # GitHub账号
-        gravatar: fdfcf1e17124a1b949b98ddff70550a8  # Gravatar头像标识
-
-    disqus: disqus.com/embed.js                     # Disqus评论的JS地址
-    gapi: http://www.google.com/jsapi               # Google API地址
-    gravatar: http://en.gravatar.com/avatar/        # Gravatar头像服务器地址
+# Sass defined settings
+sass:
+    sass_dir: assets/css/_sass
+    style: compressed # Enable minification
