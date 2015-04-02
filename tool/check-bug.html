@@ -130,7 +130,7 @@
                         }, false);
                     },
                     frameValue: function(data) {
-                        var url = 'https://bugzilla.tools.vipshop.com/bugzilla/buglist.cgi?resolution=FIXED&emailtype1=substring&chfieldto={to}&emailassigned_to1=1&query_format=advanced&chfieldfrom={from}&email1={email}';
+                        var url = 'https://bugzilla.tools.vipshop.com/bugzilla/buglist.cgi?f1=cf_rootcause&o1=regexp&resolution=FIXED&emailtype1=substring&chfieldto={to}&emailassigned_to1=1&query_format=advanced&chfieldfrom={from}&bug_status=CLOSED&email1={email}&v1=%28.%2A%E4%BB%A3%E7%A0%81%E9%97%AE%E9%A2%98.%2A%29%7C%28.%2A%E5%90%88%E5%B9%B6%E5%8E%9F%E5%9B%A0.%2A%29%7C%28.%2A%E8%AE%BE%E8%AE%A1%E4%BC%98%E5%8C%96.%2A%29'
                         var email = data.email;
                         if (data.email == '@vipshop.com') {
                             email = data.select;
