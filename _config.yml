@@ -9,7 +9,7 @@
 #
 
 timezoon: Asia/Hong_kong
-permalink: /:title/
+permalink: /:categories/:title/
 markdown: redcarpet
 highlighter: rouge
 
@@ -53,7 +53,7 @@ description: Mss - 相信世界始终美好。
 keywords: 猫叔,mss,web前端,前端,HTML,CSS,JavaScript,js,设计
 
 # Assets path used in templates
-assets: ./assets
+assets: /assets
 
 # Sass defined settings
 sass:
