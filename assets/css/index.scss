@@ -1,0 +1,89 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+
+// body{
+//     background: url(/assets/img/index-bg.jpg) center center;
+//     background-size: cover;
+// }
+
+.g-main {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 50px;
+    margin: auto;
+    width: 500px;
+    height: 210px;
+}
+
+.g-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.u-title {
+    font-size: 4em;
+    text-align: center;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+.m-nav {
+    text-align: center;
+
+    li {
+        display: inline-block;
+    }
+
+    &[use="classify"] {
+        padding-top: 20px;
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+
+        a {
+            display: block;
+            text-decoration: none;
+            border-radius: 5px;
+            background-color: #ccc;
+            color: #fff;
+            padding: 5px 0;
+            width: 70px;
+            font-size: 1.3em;
+            margin: 0 5px;
+            transition: .3s ease-out;
+
+            &:hover {
+                background-color: #333;
+            }
+        }
+    }
+
+    &[use="contact"] {
+        h2 {
+            color: #555;
+            font-size: 1.5em;
+            text-indent: -7em;
+            font-weight: normal;
+            margin-bottom: 5px;
+        }
+
+        a {
+            display: inline-block;
+            font-size: 22px;
+            line-height: 1;
+            margin: 0 5px;
+            color: #999;
+            transition: .3s ease-out;
+            -webkit-filter: blur(1px);
+
+            &:hover {
+                color: #333;
+                -webkit-filter: blur(0);
+            }
+        }
+    }
+}
