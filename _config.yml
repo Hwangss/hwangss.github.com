@@ -9,7 +9,7 @@
 #
 
 timezoon: Asia/Hong_kong
-permalink: /:categories/:title/
+permalink: /:categories/:title.html
 markdown: redcarpet
 highlighter: rouge
 
@@ -46,7 +46,7 @@ exclude:
 #
 
 # Site name
-name: mss
+name: Mss, cn
 
 # Site description and keywords, will appear in the document meta and Atom feed subtitle
 description: Mss - 相信世界始终美好。
