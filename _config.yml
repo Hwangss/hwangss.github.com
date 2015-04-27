@@ -1,4 +1,4 @@
-#
+﻿#
 # More configuration examples at:
 # http://jekyllrb.com/docs/configuration/
 #
@@ -9,7 +9,7 @@
 #
 
 timezoon: Asia/Hong_kong
-permalink: /:categories/:title.html
+permalink: /:categories/:title
 markdown: redcarpet
 highlighter: rouge
 
