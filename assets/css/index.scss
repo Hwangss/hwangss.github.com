@@ -35,8 +35,13 @@
     text-align: center;
     font-weight: normal;
     letter-spacing: 2px;
-    opacity:0;
     -webkit-animation: fadeIn .5s linear forwards 1.8s;
+
+    @media all and (-webkit-min-device-pixel-ratio:0) {
+        & {
+            opacity: 0;
+        }
+    }
 }
 
 // nav
@@ -62,16 +67,10 @@
             @for $i from 1 through 4 {        
                 &:nth-of-type(#{$i}) .u-classify-nav-shadow {
                     -webkit-animation-delay: $i*0.15s;
-                    -moz-animation-delay: $i*0.15s;
-                    -ms-animation-delay: $i*0.15s;
-                    animation-delay: $i*0.15s;
                 }
 
                 &:nth-of-type(#{$i}) a {
                     -webkit-animation-delay: $i*0.15s+2s;
-                    -moz-animation-delay: $i*0.15s+2s;
-                    -ms-animation-delay: $i*0.15s+2s;
-                    animation-delay: $i*0.15s+2s;
                 }
             }
         }
@@ -87,10 +86,15 @@
             padding: 5px 0;
             width: 70px;
             font-size: 1.3em;
-            border: 1px solid #fff;
+            border: 2px solid #fff;
             transition: .3s ease-in;
-            opacity:0;
             -webkit-animation: fadeIn .5s linear forwards 2s;
+
+            @media all and (-webkit-min-device-pixel-ratio:0) {
+                & {
+                    opacity: 0;
+                }
+            }
 
             &:hover {
                 background-color: #333;
@@ -99,6 +103,7 @@
     }
 
     &[data-use="contact"] {
+        -webkit-perspective: 500px;
         perspective: 500px;
         -webkit-transform-style: preserve-3d;
 
@@ -113,7 +118,7 @@
         ul {
             -webkit-transform-origin: center bottom;
             -webkit-transform: rotateX(93deg);
-            -webkit-animation: navIn 1s linear forwards 2s;
+            -webkit-animation: navIn 1s linear forwards 1s;
         }
 
         a {
@@ -156,8 +161,8 @@
 
 .u-classify-nav-shadow {
     position: absolute;
-    left: 1px;
-    top: 1px; 
+    left: 2px;
+    top: 2px; 
     border-radius: 5px;
     stroke-dasharray: 400%;
     stroke-dashoffset: 400%;
