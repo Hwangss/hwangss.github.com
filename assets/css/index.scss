@@ -10,7 +10,7 @@
     top: 0;
     bottom: 50px;
     margin: auto;
-    width: 500px;
+    width: 320px;
     height: 210px;
 }
 
@@ -59,10 +59,11 @@
         padding-top: 20px;
         padding-bottom: 15px;
         margin-bottom: 10px;
+        font-size: 0;
 
         li {
             position: relative;
-            margin: 0 5px;
+            margin: 0 3px;
 
             @for $i from 1 through 4 {        
                 &:nth-of-type(#{$i}) .u-classify-nav-shadow {
@@ -85,7 +86,7 @@
             color: #fff;
             padding: 5px 0;
             width: 70px;
-            font-size: 1.3em;
+            font-size: 15px;
             border: 2px solid #fff;
             transition: .3s ease-in;
             -webkit-animation: fadeIn .5s linear forwards 2s;
