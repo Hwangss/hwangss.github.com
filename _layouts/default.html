@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="format-detection" content="address=no"/>
     <meta name="viewport" content="width=device-width,minimal-ui, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>{{site.name}}{{page.title}}</title>
+    <title>{{site.name}}{% if page.title %} - {{page.title}}{% endif %}</title>
     <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico">
     <link rel=stylesheet href="{{site.assets}}/css/common.css">
     {% for css in page.css %}
