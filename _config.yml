@@ -10,7 +10,7 @@
 
 timezoon: Asia/Hong_kong
 permalink: /:categories/:title
-markdown: kramdown
+markdown: redcarpet
 highlighter: rouge
 
 #
