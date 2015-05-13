@@ -12,10 +12,11 @@ body {
 }
 
 body {
-    font: 13px/1.5 Helvetica,arial,Hiragino Sans GB,WenQuanYi Micro Hei,\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif;
+    font: 16px/1.5 Helvetica,arial,Hiragino Sans GB,WenQuanYi Micro Hei,\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif;
     min-width: 320px;
     -webkit-overflow-scrolling: touch;
     -webkit-text-size-adjust: 100%;
+    background-color: #f2f2f2;
 }
 
 ul {
@@ -43,14 +44,16 @@ a {
 
 // header
 .g-header,
-.g-main {
+.g-main,
+.g-footer {
     padding: 0 4%;
+    background-color: #fff;
 
-    @media screen and (min-width:1000px) {
+    @media screen and (min-width:640px) {
         & {
-            width: 1000px;
+            width: 640px;
             margin: 0 auto;
-            padding: 0;
+            padding: 0 25px;
         }
     }
 }
@@ -58,15 +61,18 @@ a {
 .g-header {
     overflow: hidden;
     line-height: 40px;
-    border-bottom: 1px solid #ccc;
-    box-shadow: 0 0 1px rgba(193,193,193,.6);
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 
-    @media screen and (min-width:1000px) {
+    @media screen and (min-width:640px) {
         & {
             box-shadow: none;
         }
     }
+}
+
+.g-main {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .u-header-title {
@@ -86,6 +92,7 @@ a {
     a {
         display: block;
         padding: 0 3px;
+        margin: 0 5px;
     }
 }
 
@@ -93,5 +100,6 @@ a {
 .g-footer{
     line-height: 50px;
     text-align: center;
+    margin-top: 10px;
 }
 

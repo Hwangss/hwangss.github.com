@@ -2,20 +2,6 @@
 # Front matter comment to ensure Jekyll properly reads file.
 ---
 
-.g-main {
-    @media screen and (max-width:1000px) {
-        & {
-            font-size: 14px;
-        }
-    }
-
-    @media screen and (max-width:640px) {
-        & {
-            font-size: 16px;
-        }
-    }
-}
-
 .u-post-title {
     text-align: center;
     font-size: 2em;
@@ -23,13 +9,21 @@
 
 .u-post-date {
     text-align: center;
+    margin: 5px 0 15px 0;
+    text-indent: 2em;
 }
 
 .m-article {
+
     img {
         display: block;
         max-width: 100%;
         margin: 10px auto;
+    }
+
+    p {
+		margin: .5em 0;
+		text-indent: 2em;
     }
 }
 

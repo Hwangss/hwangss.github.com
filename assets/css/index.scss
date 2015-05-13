@@ -31,8 +31,9 @@
 .u-title {
     position: relative;
     z-index: 2;
-    background-color: #fff;
+    background-color: #f2f2f2;
     font-size: 4em;
+    line-height: 72px;
     text-align: center;
     font-weight: normal;
     letter-spacing: 2px;
@@ -88,7 +89,7 @@
             padding: 5px 0;
             width: 70px;
             font-size: 15px;
-            border: 2px solid #fff;
+            border: 2px solid #f2f2f2;
             transition: .3s ease-in;
             -webkit-animation: fadeIn .5s linear forwards 2s;
 
@@ -164,8 +165,7 @@
 .u-classify-nav-shadow {
     position: absolute;
     left: 2px;
-    top: 2px; 
-    border-radius: 5px;
+    top: 1px; 
     stroke-dasharray: 400%;
     stroke-dashoffset: 400%;
     -webkit-animation: drawSvg 1.5s linear forwards;
