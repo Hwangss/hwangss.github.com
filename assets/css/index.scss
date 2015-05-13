@@ -12,6 +12,7 @@
     margin: auto;
     width: 320px;
     height: 210px;
+    padding: 0;
 }
 
 .g-footer {
@@ -48,7 +49,7 @@
 @-webkit-keyframes navIn {
     100% {-webkit-transform: rotateX(0deg);}
 }
-.m-nav {
+.m-index-nav {
     text-align: center;
 
     li {

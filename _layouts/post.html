@@ -1,9 +1,14 @@
 ---
 layout: default
+css: [post.css]
 ---
 
-<h1 class="post-title">{{ page.title }}</h1>
-  <p class="post-date">{{ page.date | date_to_string }}</p>
-<div class="w">
+<h1 class="u-post-title">{{ page.title }}</h1>
+<p class="u-post-date">{{ page.date | date: "%Y / %m / %d" }}</p>
+<div class="m-article">
 {{ content }}
 </div>
+<aside class="m-author">
+    <h3 class="u-author-name">{% if post.author %}{{post.author}}{% else %}Mss{% endif %}</h3>
+    {% if post.author == null %}<p class="u-author-info">猫叔，安逸主义 && 完美主义矛盾体，有主持梦却想去做设计的前端工程师。</p>{% endif %}
+</aside>

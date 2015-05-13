@@ -1,0 +1,47 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+
+.g-main {
+    @media screen and (max-width:1000px) {
+        & {
+            font-size: 14px;
+        }
+    }
+
+    @media screen and (max-width:640px) {
+        & {
+            font-size: 16px;
+        }
+    }
+}
+
+.u-post-title {
+    text-align: center;
+    font-size: 2em;
+}
+
+.u-post-date {
+    text-align: center;
+}
+
+.m-article {
+    img {
+        display: block;
+        max-width: 100%;
+        margin: 10px auto;
+    }
+}
+
+.m-author {
+    border-top: 1px solid #ccc;
+}
+
+.u-author-name {
+    margin: .8em 0 .3em 0;
+}
+
+.u-author-info {
+    padding-left: 1em;
+    margin: .3em 0;
+}

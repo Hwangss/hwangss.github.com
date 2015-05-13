@@ -1,0 +1,12 @@
+.g-header,
+.g-main {
+    padding: 0 6.667%;
+
+    @media screen and (min-width:1000px) {
+            & {
+                width: 1000px;
+                margin: 0 auto;
+                padding: 0;
+            }
+    }
+}
