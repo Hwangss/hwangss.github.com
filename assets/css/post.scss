@@ -5,15 +5,16 @@
 .u-post-title {
     text-align: center;
     font-size: 2em;
+    line-height: 1.4;
 }
 
 .u-post-date {
     text-align: center;
-    margin: 5px 0 15px 0;
-    text-indent: 2em;
+    margin: 2px 0 20px 0;
 }
 
 .m-article {
+	line-height: 1.8;
 
     img {
         display: block;
@@ -22,7 +23,7 @@
     }
 
     p {
-		margin: .5em 0;
+		margin: .7em 0;
 		text-indent: 2em;
     }
 }

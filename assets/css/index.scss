@@ -22,6 +22,7 @@
     left: 0;
     width: 100%;
     background-color: #f2f2f2;
+    padding: 0;
 }
 
 // title
@@ -34,7 +35,7 @@
     position: relative;
     z-index: 2;
     background-color: #f2f2f2;
-    font-size: 4em;
+    font-size: 3em;
     line-height: 72px;
     text-align: center;
     font-weight: normal;
@@ -156,7 +157,7 @@
         text-anchor: middle;
         fill: transparent;
         stroke: #333;
-        font-size: 4em;
+        font-size: 3em;
         letter-spacing: 2px;
         stroke-dasharray: 100%;
         stroke-dashoffset: 100%;
