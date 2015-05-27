@@ -7,6 +7,7 @@ css: [post.css]
 <p class="u-post-date">{{ page.date | date: "%Y / %m / %d" }}</p>
 <div class="m-article">
 {{ content }}
+<div class="u-repost">如需转载，烦请注明文章出处： <a href="{{site.basePath}}{{page.url}}">{{site.basePath}}{{page.url}}</a></div>
 </div>
 <aside class="m-author">
     <h3 class="u-author-name">{% if post.author %}{{post.author}}{% else %}Mss{% endif %}</h3>
