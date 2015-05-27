@@ -2,14 +2,21 @@
 layout: default
 permalink: /work/
 ---
-<p style="text-align: center;font-size: 30px;">To be continue ...</p>
-<!-- <ul>
-  {% for post in site.categories.life %}
+
+<style>
+    .m-article-list li{margin-bottom:10px;border-bottom:1px solid #ccc;}
+    .m-article-list .time{float:right;}
+    .m-article-list .title{display: block;color:#333;-webkit-transition:.36s;transition:.36s;}
+    .m-article-list .title:hover{-webkit-transform:translateX(.5em);transform:translateX(.5em);}
+</style>
+
+<ul class="m-article-list">
+  {% for post in site.categories.work %}
     <li>
-      <a href="{{ post.url }}">
+      <span class="time">{{ post.date | date: "%Y-%m-%d" }}</span>
+      <a href="{{ post.url }}" class="title">
         {{ post.title }}
       </a>
-      <time>{{ post.date | date: "%B %-d, %Y" }}</time>
     </li>
   {% endfor %}
-</ul> -->
+</ul>
