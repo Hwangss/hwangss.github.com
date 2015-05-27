@@ -17,3 +17,15 @@
         </ul>
     </nav>
 </header>
+<script>
+    var aNav = {};
+    Array.prototype.slice.call(document.querySelectorAll('.m-nav a')).forEach(function(ele){
+        aNav[ele.href] = ele;
+    })
+    var href = window.location.href;
+    for(key in aNav) {
+        if(new RegExp(key).test(href)){
+            aNav[key].className = 'active';
+        }
+    }
+</script>
