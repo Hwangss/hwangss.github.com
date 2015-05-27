@@ -1,4 +1,4 @@
-﻿#
+#
 # More configuration examples at:
 # http://jekyllrb.com/docs/configuration/
 #
@@ -51,6 +51,9 @@ name: Mss, cn
 # Site description and keywords, will appear in the document meta and Atom feed subtitle
 description: Mss - 相信世界始终美好。
 keywords: 猫叔,mss,web前端,前端,HTML,CSS,JavaScript,js,设计
+
+# base url
+basePath: http://maoshu.me
 
 # Assets path used in templates
 assets: /assets
