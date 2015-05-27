@@ -17,6 +17,7 @@ body {
     -webkit-overflow-scrolling: touch;
     -webkit-text-size-adjust: 100%;
     background-color: #f2f2f2;
+    color: #555;
 }
 
 ul {
@@ -26,7 +27,7 @@ ul {
 }
 
 a {
-    color: #333;
+    color: #1d94d1;
     text-decoration: none;
 
     &:hover,
@@ -62,6 +63,8 @@ a {
     overflow: hidden;
     line-height: 40px;
     margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
     @media screen and (min-width:640px) {
         & {
@@ -79,11 +82,16 @@ a {
     float: left;
     font-size: 26px;
     font-weight: normal;
+
+    a{
+        color: #333;
+    }
 }
 
 .m-nav {
     float: right;
     font-size: 14px;
+    margin-top: 5px;
 
     li {
         float: left;
@@ -91,8 +99,16 @@ a {
 
     a {
         display: block;
-        padding: 0 3px;
+        padding: 0 7px;
         margin: 0 5px;
+        color: #333;
+        border-radius: 3px;
+        line-height: 30px;
+
+        &:hover,
+        &.active {
+            background: rgba(0,0,0,.05)
+        }
     }
 }
 
