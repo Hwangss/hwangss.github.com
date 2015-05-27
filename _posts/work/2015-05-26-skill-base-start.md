@@ -11,7 +11,7 @@ title: 前端技巧库 — 序
 
 以下。
 
-{% for post in site.categories.work %}
+{% for post in site.categories.work reversed %}
 {% if post.keyword == '技巧库' %}
 - [{{post.title}}]({{post.url}})
 {% endif %}
