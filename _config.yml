@@ -9,7 +9,7 @@
 #
 
 timezoon: Asia/Hong_kong
-permalink: /:categories/:title
+permalink: /:categories/:title.html
 markdown: kramdown
 highlighter: rouge
 
