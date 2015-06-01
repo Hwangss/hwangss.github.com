@@ -30,3 +30,6 @@ w3c是这么描述它的:
 ##圣杯布局/双飞翼布局
 
 这个其实更适合放在**margin**里面讲，毕竟里面的功臣是负边距，但是没有浮动也一样不生效，也罢，先看效果。
+
+<p data-height="186" data-theme-id="15542" data-slug-hash="WvRGgg" data-default-tab="result" data-user="mss" class='codepen'>See the Pen <a href='http://codepen.io/mss/pen/WvRGgg/'>WvRGgg</a> by mss (<a href='http://codepen.io/mss'>@mss</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
