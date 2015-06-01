@@ -44,3 +44,28 @@ w3c是这么描述它的:
 /* 由于a到了开头，所以c占据a原来的位置，
    再向左负自身宽度的距离就到了第一行尾部了 */
 {% endhighlight %}
+
+##浮动居中
+
+居中一直是困扰无数前端同行的问题，尤其是未知宽度的居中，涉及到浮动的话居中更是一个难点，这里可以利用**position:relative;**的特点做到，效果如下。
+
+<p data-height="155" data-theme-id="15542" data-slug-hash="NqdEmp" data-default-tab="result" data-user="mss" class='codepen'>See the Pen <a href='http://codepen.io/mss/pen/NqdEmp/'>NqdEmp</a> by mss (<a href='http://codepen.io/mss'>@mss</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+*看不到动画的forget it，因为我只写了webkit，懒。*
+
+原理就是利用**绝对定位**的元素**left**的取值是百分比是参照物是**父元素的宽度**，而浮动元素会包裹自身内容，即宽度为自身内容宽度。想象一下，有容器container和内容块content嵌套，分别设置浮动和绝对定位，container设置**left:50%;**，由于前面说的特点，container会包裹自身内容且位置移动到父元素的宽度一半处*（例子红色块）*，而同时content设置**left:-50%; / right:50%;**，由于container是content的父元素，所以移动的位置**等同自身的一半**，这两者所产生的效果就是我们所需要的居中了。
+
+另外这个方法也是有缺点的，细心的同学会发现如果我的内容层宽度超过container父元素的一半不是会溢出吗*（红色块）*？是的毕竟视觉上的居中只是content层，container还在50%的位置，所以需要给container父元素加上**overflow:hidden;**，用到此方法的时候需要考虑会否因为这个而影响到其他需要做的事。
+
+{% highlight css %}
+/* 核心代码 */
+.container {float: left; position: relative; left: 50%;/* 向右移动到50%的位置 */}
+.content {float: left; position: relative; left: -50%;/* 向左移动到50%的位置 */}
+{% endhighlight %}
+
+##小结
+
+有很多人说“浮动是魔鬼”，是因为它与生俱来的特性，还有一些顽皮的IE引起的问题*（双边距？XD）*，所以对其嗤之以鼻，当你了解它的特点以后，它可以绽放出它的光彩，例如我写的这个[自适应例子](http://codepen.io/mss/pen/PqWXWW)。在浏览器的不断迭代中以及移动端的崛起，浮动也是时候回归它的本职*（图文排版？）*，让更适合的语法来做布局，例如**Flexbox**、**Grid Layout**等等。
+
+第一课就到此结束了，希望文章中的一些小技巧可以让你在前进的过程中少点烦恼，刺激到你的想法吧。
