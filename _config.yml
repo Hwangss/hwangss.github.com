@@ -11,7 +11,6 @@
 timezoon: Asia/Hong_kong
 permalink: /:categories/:title.html
 markdown: kramdown
-highlighter: rouge
 
 #
 # Jekyll serve settings
