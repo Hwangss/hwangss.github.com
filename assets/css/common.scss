@@ -57,6 +57,12 @@ a {
             padding: 0 25px;
         }
     }
+
+    @media screen and (min-width:1000px) {
+        & {
+            width: 1000px;
+        }
+    }
 }
 
 .g-header {
