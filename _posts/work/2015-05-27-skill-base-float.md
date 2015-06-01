@@ -33,3 +33,14 @@ w3c是这么描述它的:
 
 <p data-height="186" data-theme-id="15542" data-slug-hash="WvRGgg" data-default-tab="result" data-user="mss" class='codepen'>See the Pen <a href='http://codepen.io/mss/pen/WvRGgg/'>WvRGgg</a> by mss (<a href='http://codepen.io/mss'>@mss</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+效果其实很简单，就是有a、b、c三个块，a、c固定宽度的侧边栏，然后内容块b自适应宽度。利用的就是浮动后的兄弟元素是在“同一行”*（或者说是同脱离正常文档流）*的，可以通过**负边距**来进行位置上的调整，由于模块b已经设置**width:100%;**，所以模块因为宽度不足而换行*（like text）*，而当有足够左负边距值，模块就可以向前进行位置调整，例如模块a在第二行的开头，那么只需要加上**margin-left:-100%;**那么它的位置就已经到了第一行的最开始，如此类推。
+
+{% highlight css %}
+/* 核心代码 */
+.a {float: left; width: 100px; margin-left: -100%;/* 到第一行开头 */}
+.b {float: left; width: 100%;}
+.c {float: left; width: 150px; margin-left: -150px;}
+/* 由于a到了开头，所以c占据a原来的位置，
+   再向左负自身宽度的距离就到了第一行尾部了 */
+{% endhighlight %}
