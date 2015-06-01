@@ -36,12 +36,37 @@
     strong {
         color: #f10180;
         font-weight: normal;
+        padding: 0 3px;
     }
 
     em {
         font-style: normal;
         font-size: .8em;
         color: #666;
+    }
+    blockquote {
+        margin: .7em 0 .7em 2em;
+        border-left: 4px solid #ccc;
+        overflow: hidden;
+        padding-left: 1em;
+        padding-right: 1em;
+        background-color: #f0f0f0;
+
+        p {
+            margin: .2em 0;
+            text-indent: 0;
+        }
+    }
+
+    h2 {
+        margin: 1em 0;
+        font-size: 1.2em;
+        border-bottom: 1px solid #ccc;
+    }
+
+    pre {
+        padding-bottom: 1em;
+        padding-top: .5em;
     }
 }
 
