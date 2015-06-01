@@ -31,8 +31,6 @@ w3c是这么描述它的:
 
 这个其实更适合放在**margin**里面讲，毕竟里面的功臣是负边距，但是没有浮动也一样不生效，也罢，先看效果。
 
-<p data-height="186" data-theme-id="15542" data-slug-hash="WvRGgg" data-default-tab="result" data-user="mss" class='codepen'>See the Pen <a href='http://codepen.io/mss/pen/WvRGgg/'>WvRGgg</a> by mss (<a href='http://codepen.io/mss'>@mss</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 效果其实很简单，就是有a、b、c三个块，a、c固定宽度的侧边栏，然后内容块b自适应宽度。利用的就是浮动后的兄弟元素是在“同一行”*（或者说是同脱离正常文档流）*的，可以通过**负边距**来进行位置上的调整，由于模块b已经设置**width:100%;**，所以模块因为宽度不足而换行*（like text）*，而当有足够左负边距值，模块就可以向前进行位置调整，例如模块a在第二行的开头，那么只需要加上**margin-left:-100%;**那么它的位置就已经到了第一行的最开始，如此类推。
 
@@ -49,8 +47,6 @@ w3c是这么描述它的:
 
 居中一直是困扰无数前端同行的问题，尤其是未知宽度的居中，涉及到浮动的话居中更是一个难点，这里可以利用**position:relative;**的特点做到，效果如下。
 
-<p data-height="155" data-theme-id="15542" data-slug-hash="NqdEmp" data-default-tab="result" data-user="mss" class='codepen'>See the Pen <a href='http://codepen.io/mss/pen/NqdEmp/'>NqdEmp</a> by mss (<a href='http://codepen.io/mss'>@mss</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 *看不到动画的forget it，因为我只写了webkit，懒。*
 
