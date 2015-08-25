@@ -90,5 +90,22 @@
     text-indent: 2em;
 }
 
+.u-cut-off-rule {
+    text-align: center;
+    color: #333;
+    height: 1px;
+    background-color: #999;
+    line-height: 3;
+    margin: 3em 0;
+
+    .txt {
+        margin-top: -1.5em;
+        display: inline-block;
+        vertical-align: top;
+        background-color: #fff;
+        padding: 0 5px;
+    }
+}
+
 // highlight
 @import '_highlight';
