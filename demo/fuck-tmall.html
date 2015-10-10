@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拯救不开心</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        body{font: 14px/1.5 microsoft yahei;}
+        .button{display: inline-block;-webkit-appearance:none;border:0 none;border-radius:3px;background: #f3b241;padding:7px 15px;font: 13px/1.2 microsoft yahei;color:#fff;transition:.3s;cursor:pointer;vertical-align: middle;}
+        .button:hover{background:#d99f3b;}
+        .button[disabled] {cursor:not-allowed;background-color: #999}
+        .hidden {display: none;}
+        .step {margin:30px 0 20px 0;padding-left: 60px;}
+        .step:first-child{margin-top: 0;}
+        .step:last-child{margin-bottom: 0;}
+        .step-title{width: 60px;margin-left: -60px;display: block;padding-bottom: 10px;}
+        .wrap{width: 500px;margin: 100px auto;box-sizing:border-box;padding:50px 100px;box-shadow: 0 0 5px rgba(0,0,0,.3);border-radius:5px;}
+        .focus{margin:0 5px;color:#f10180;}
+        @-webkit-keyframes drawSvg{100%{stroke-dasharray:0;}}
+        @-webkit-keyframes spin{100%{transform:rotate(360deg);}}
+        @-webkit-keyframes drawColor{0%{color:transparent;}100%{color:#6ab273;}}
+        .svg{stroke-dasharray:1000;width: 1em;height: 1em;font-size: 25px;color:transparent;visibility: hidden;vertical-align: middle;margin-left: 15px;}
+        .svg.show{-webkit-animation:drawSvg 1s forwards,drawColor 1s .8s forwards;visibility:visible;}
+        .loading{width: 20px;height: 20px;border-radius:100%;border:3px solid #f3b241;border-right-color:transparent;margin-left: 50px;-webkit-animation:spin 2s linear infinite;}
+    </style>
+</head>
+<body>
+    <svg display="none" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <symbol id="icon-tick" viewBox="0 0 32 32">
+                <g transform="scale(0.03125 0.03125)"><path d="M698.24 416.96l-32.064-32.064c-5.92-5.92-15.488-5.92-21.376 0l-192.448 192.416-91.488-92.224c-5.952-5.92-15.488-5.92-21.44 0l-32.064 32.096c-5.92 5.92-5.92 15.488 0 21.376l134.176 135.136c5.92 5.888 15.488 5.888 21.376 0l235.328-235.328c5.952-5.92 5.952-15.488 0-21.408zM512 96c-229.76 0-416 186.24-416 416s186.24 416 416 416 416-186.24 416-416-186.24-416-416-416zM512 832c-176.704 0-320-143.296-320-320 0-176.736 143.296-320 320-320 176.736 0 320 143.264 320 320 0 176.704-143.264 320-320 320z" stroke-width='10px' fill='currentColor' stroke='#6ab273' /></g>
+            </symbol>
+        </defs>
+    </svg>
+<div class="wrap">
+    <div class="step">
+        <span class="step-title">第一步：</span>
+        <label for="file" class="button">选择一个txt文件</label><input type="file" class="hidden" id="file" accept="text/plain" /><svg class="svg"><use xlink:href="#icon-tick"/></svg>
+    </div>
+    
+    <div class="step">
+        <span class="step-title">第二步：</span>
+        <button type="button" id="getData" class="button" disabled>去拿天猫拿东西拉</button><svg class="svg"><use xlink:href="#icon-tick"/></svg>
+    </div>
+
+    <div id="tips" class="hidden step">
+        <span class="step-title">第三步：</span>
+        <div class="loading" id="downloadIcon"></div>
+        <div id="downloadTxt" class="hidden">一共有<span id="totalPic" class="focus"></span>张图要下载，现在还有<span id="lastPic" class="focus"></span>张没尝试下载。继续点&nbsp;&nbsp;&nbsp;<button class="button" id="download">下载</button></div>
+    </div>
+</div>
+<div id="result" class="hidden"></div>
+<script type="text/javascript">
+    var file = document.getElementById("file");
+    var result = document.getElementById("result");
+    var download = document.getElementById('download');
+    var downloadTxt = document.getElementById('downloadTxt');
+    var downloadIcon = document.getElementById('downloadIcon');
+    var tips = document.getElementById('tips');
+    var lastPic = document.getElementById('lastPic');
+    var oGetData = document.getElementById('getData');
+    var total = 0;
+    var count = 0;
+    var newArr = [];
+    var isDownTxt = false;
+    var alreadyDown = 0;
+    var picList;
+
+    //判断浏览器是否支持FileReader接口  
+    if (typeof FileReader == 'undefined') {
+        alert('你的浏览器不支持啊，换个高级点的！')
+    }
+
+    oGetData.onclick = function  () {
+        readAsText();
+    }
+
+    file.onchange = function  () {
+        result.innerHTML = '';
+        newArr.length = 0;
+        this.nextSibling.setAttribute('class','svg show');
+        oGetData.removeAttribute('disabled');
+        oGetData.nextSibling.setAttribute('class','svg');
+        downloadTxt.style.display = 'none';
+        downloadIcon.style.display = 'block';
+    }
+
+    function readAsText() {
+        result.innerHTML = '';
+        var file = document.getElementById("file").files[0];
+        if(!file) {
+            alert('请先选择原始数据文件');
+            return false;
+        }
+        else {
+            oGetData.setAttribute('disabled',true);
+            oGetData.nextSibling.setAttribute('class','svg show');
+            tips.style.display='block';
+        }
+        var reader = new FileReader();
+        //将文件以文本形式读入页面  
+        reader.readAsText(file);
+
+        reader.onload = function(f) {
+            var arr = this.result.split('\n').slice(1);
+
+            for (var i = 0, len = arr.length; i < len; i++) {
+                var subArr = arr[i].trim().split('\t');
+                if (subArr.length <= 1) continue;
+                newArr.push(subArr);
+            }
+
+            getImage(newArr);
+        }
+    }
+
+    download.onclick=function  () {
+        if(!isDownTxt) {
+            var obj = {};
+            for (var i = 0; i < newArr.length; i++) {
+                var cc = newArr[i];
+                obj[document.getElementById('img-'+cc[1]).innerHTML.replace(/(.+)\/(.+?)$/,'$2')] = [cc[0],cc[4]];
+            };
+            createTxt('list.txt',JSON.stringify(obj));
+            isDownTxt = true;
+        }
+        downloadImg();
+    }
+
+    function getImage(arr) {
+        total = arr.length;
+        document.getElementById('totalPic').innerHTML = total;
+        lastPic.innerHTML = total;
+        var group = Math.ceil(total / 10);
+
+        function groupRun(index) {
+            var isLast = (index == group);
+            var start = (index-1)*10;
+            var len = isLast ? total : index * 10;
+            var thisTotalCount = isLast? total - start : 10;
+            var groupCount = 0;
+            for (var i = start; i < len; i++) {
+                var those = arr[i];
+                var win = window.open(those[2]);
+                var p = document.createElement('p');
+                p.id = 'img-' + those[1];
+                result.appendChild(p);
+                p.addEventListener('DOMNodeInserted', function() {
+                    groupCount++;
+                    if (groupCount == thisTotalCount){
+                        if(isLast){
+                            downloadTxt.style.display = 'block';
+                            downloadIcon.style.display = 'none';
+                            picList = Array.prototype.slice.call(document.querySelectorAll('[id^=img-]'));
+                            return false;
+                        }
+                        setTimeout(function  () {
+                            groupRun(++index);
+                        }, 500);
+                    }
+                }, false);
+            }
+        }
+
+        groupRun(1)
+
+    }
+
+    function downloadImg () {
+        var picLen = picList.length;
+        if(picLen == 0) tips.innerHTML = '没拉，下完拉！';
+        var len = picLen > 10 ? 10 :picLen;
+        for (var i = 0; i < len; i++) {
+            var a = document.createElement('a');
+            a.download=true;
+            a.href=picList[i].innerHTML;
+            a.click();
+            delete a;
+        };
+        picList.splice(0,10);
+        lastPic.innerHTML = picList.length;
+        if(picList.length == 0) tips.innerHTML = '没拉，下完拉！';
+    }
+
+    function createTxt(filename, text) {
+      var a = document.createElement('a');
+      a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      a.setAttribute('download', filename);
+      a.click();
+      delete a;
+    }
+</script>  
+</body>
+</html>
