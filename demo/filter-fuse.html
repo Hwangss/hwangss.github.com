@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>滤镜融合小效果</title>
+    <style>
+        .w{
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            width: 500px;
+            height: 500px;
+            box-shadow:  0 0 5px #000;
+            overflow: hidden;
+        }
+        .w>div{
+            position: relative;
+            float: left;
+            height: 100%;
+            -webkit-filter:contrast(10);
+        }
+
+        .l{
+            z-index: 2;
+            width: 50%;
+            background:#fff;
+            overflow: hidden;
+        }
+
+        .l:after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            width: 5px;
+            height: 100%;
+            background: #000;
+            -webkit-filter: blur(3px);
+        }
+
+        .r {
+            width: 100%;
+            margin-left: -50%;
+            background: #000;
+        }
+
+        .r:after {
+            content: '';
+            position: absolute;
+            left: calc(50% - 5px);
+            width: 5px;
+            height: 100%;
+            background: #fff;
+            -webkit-filter: blur(3px);
+        }
+        .b{
+            position: absolute;
+            -webkit-animation: moveX 8s ease-in infinite;
+        }
+
+        .b:after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 30px;
+            background: #000;
+            border-radius: 50%;
+            -webkit-filter: blur(5px);
+            -webkit-animation:moveY 8s ease-out infinite;
+        }
+
+        .rect:after{
+            background: #fff;
+        }
+
+        @-webkit-keyframes moveX {
+            0%,100% {
+                -webkit-transform: translateX(125px);
+            }
+            50%{
+                -webkit-transform: translateX(375px);
+            }
+        }
+
+        @-webkit-keyframes moveY {
+            0%,100% {
+                -webkit-transform: translateY(200px);
+            }
+            50%{
+                -webkit-transform: translateY(300px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="w">
+        <div class="l">
+            <div class="b"></div>
+        </div>
+        <div class="r">
+            <div class="b rect"></div>
+        </div>
+    </div>
+</body>
+</html>

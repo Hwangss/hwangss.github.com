@@ -15,3 +15,6 @@
 
 - file: turntable/index.html
   title: 大转盘
+
+- file: filter-fuse.html
+  title: CSS滤镜融合小效果
