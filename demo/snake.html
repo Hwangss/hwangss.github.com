@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas 贪吃蛇</title>
+    <style>
+        #wrap{
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 100px auto;
+        }
+
+        #wrap canvas {position: absolute;}
+    </style>
+</head>
+<body>
+<div id="wrap"></div>
+<script>
+    var root = document.getElementById('wrap');
+var w = root.width;
+var h = root.height;
+
+var snaker = {
+    root: document.getElementById('wrap'),
+    width: new Number(),
+    height: new Number(),
+    size: new Number(),
+    hasPoint: {},
+    init: function(num, rectLength) {
+        this.width = rectLength || 500;
+        this.height = rectLength || 500;
+        this.size = ~~(this.width / num);
+        this.num = num;
+        this.drawBg(num);
+        this.mainCanvas();
+    },
+    drawBg: function(num) {
+        var bg = this.bgCanvas = document.createElement("canvas");
+        var w = bg.width = this.width;
+        var h = bg.height = this.height;
+        var size = this.size;
+        this.root.appendChild(bg);
+        var c = bg.getContext('2d');
+        c.beginPath();
+        c.strokeStyle = '#ccc';
+        for (var i = 0; i <= num; i++) {
+            var target = size * i || 1;
+            target == w && (target = w - 1);
+            c.moveTo(target, 0);
+            c.lineTo(target, h);
+
+            c.moveTo(0, target);
+            c.lineTo(w, target);
+        }
+        c.closePath();
+        c.stroke();
+    },
+    mainCanvas: function() {
+        var mainCanvas = document.createElement("canvas");
+        mainCanvas.width = this.width;
+        mainCanvas.height = this.height;
+        root.appendChild(mainCanvas);
+        this.mainCanvas = mainCanvas.getContext('2d');
+        var ss = new this.snake(this.size);
+        ss.play();
+        this.createPoint();
+        window.addEventListener('keydown', function(e) {
+            var code = e.keyCode + '';
+            if (code.match(/37|38|39|40/)) {
+                ss.setDir(code);
+                e.preventDefault();
+            }
+        }, false)
+    },
+    createPoint: function() {
+        var obj = snaker.hasPoint;
+        var num = this.num;
+        var x = this.ran(num);
+        var y = this.ran(num);
+        while (obj[x + '|' + y]) {
+            x = this.ran(num);
+            y = this.ran(num);
+        }
+        var c = this.ranColor();
+        snaker.hasPoint[x + '|' + y] = c;
+        this.mainCanvas.fillStyle = c;
+        this.mainCanvas.fillRect(x, y, this.size, this.size);
+    },
+    ran: function(target) {
+        return ~~(Math.random() * target) * this.size;
+    },
+    ranColor: function  () {
+        return ['#A5F2B6','#A5F2F1','#A5CDF2','#A5B4F2','#ABA5F2'][~~(Math.random()*5)];
+    },
+    snake: (function() {
+        function _snake(size) {
+            this.array = [{
+                x: 0,
+                y: 0,
+                c: snaker.ranColor()
+            },{
+                x: size,
+                y:0,
+                c: snaker.ranColor()
+            },{
+                x:size*2,
+                y:0,
+                c:snaker.ranColor()
+            }];
+            snaker.hasPoint[0 + '|' + 0] = 1;
+            this.size = size;
+            this.direction = 'right';
+            this.dirCode = 39;
+            this.startTime = new Date().getTime();
+            this.w = snaker.width;
+            this.h = snaker.height;
+        }
+        _snake.prototype = {
+            play: function() {
+                this.draw();
+                this.move();
+            },
+            setDir: function(val) {
+                var oKey = {
+                    39: 'right',
+                    37: 'left',
+                    38: 'up',
+                    40: 'down'
+                }
+                var old = this.dirCode;
+                if (Math.abs(old - val) == 2) {
+                    return false;
+                }
+                this.direction = oKey[val];
+                this.dirCode = val;
+            },
+            move: function() {
+                var time = new Date();
+                if (time - this.startTime < 100) {
+                    window.requestAnimationFrame(this.move.bind(this));
+                    return false;
+                }
+                this.startTime = time;
+                var arr = this.array;
+                var size = this.size;
+                var len = arr.length;
+                var x = arr[0].x;
+                var y = arr[0].y;
+                switch (this.direction) {
+                    case 'right':
+                        x += size;
+                        break;
+
+                    case 'left':
+                        x -= size;
+                        break;
+
+                    case 'up':
+                        y -= size;
+                        break;
+
+                    case 'down':
+                        y += size;
+                        break;
+                }
+                var targetVal = snaker.hasPoint[x + '|' + y];
+                if (/#/.test(targetVal)) {
+                    arr.unshift({
+                        x: x,
+                        y: y,
+                        c:targetVal
+                    });
+                    snaker.createPoint();
+                } else if (targetVal == 1 || x < 0 || x >= snaker.width || y < 0 || y >= snaker.height) {
+                    alert('game over');
+                    return false;
+                } else {
+                    snaker.hasPoint[arr[len - 1].x + '|' + arr[len - 1].y] = 0;
+                    snaker.mainCanvas.clearRect(arr[len - 1].x, arr[len - 1].y, size, size);
+                    for (var i = arr.length; i > 0; i--) {
+                        if (i - 1) {
+                            arr[i - 1].x = arr[i - 2].x;
+                            arr[i - 1].y = arr[i - 2].y;
+                        }
+                    }
+                    arr[0].x = x;
+                    arr[0].y = y;
+                }
+
+                snaker.hasPoint[x + '|' + y] = 1;
+                this.draw();
+                window.requestAnimationFrame(this.move.bind(this));
+            },
+            draw: function() {
+                var arr = this.array;
+                var size = this.size;
+                for (var i = arr.length; i > 0; i--) {
+                    snaker.mainCanvas.fillStyle = arr[i-1].c || '#000';
+                    snaker.mainCanvas.fillRect(arr[i - 1].x, arr[i - 1].y, size, size);
+                }
+            }
+        }
+        return _snake;
+    })()
+}
+
+snaker.init(20)
+</script>
+</body>
+</html>
