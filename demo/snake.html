@@ -11,7 +11,7 @@
             margin: 100px auto;
         }
 
-        #wrap canvas {position: absolute;}
+        #wrap canvas {position: absolute; box-shadow: 0 0 3px rgba(0,0,0,.8);}
         p{text-align: center;}
     </style>
 </head>
@@ -34,29 +34,7 @@ var snaker = {
         this.height = rectLength || 500;
         this.size = ~~(this.width / num);
         this.num = num;
-        this.drawBg(num);
         this.mainCanvas();
-    },
-    drawBg: function(num) {
-        var bg = this.bgCanvas = document.createElement("canvas");
-        var w = bg.width = this.width;
-        var h = bg.height = this.height;
-        var size = this.size;
-        this.root.appendChild(bg);
-        var c = bg.getContext('2d');
-        c.beginPath();
-        c.strokeStyle = '#ccc';
-        for (var i = 0; i <= num; i++) {
-            var target = size * i || 1;
-            target == w && (target = w - 1);
-            c.moveTo(target, 0);
-            c.lineTo(target, h);
-
-            c.moveTo(0, target);
-            c.lineTo(w, target);
-        }
-        c.closePath();
-        c.stroke();
     },
     mainCanvas: function() {
         var mainCanvas = document.createElement("canvas");
@@ -139,7 +117,7 @@ var snaker = {
             },
             move: function() {
                 var time = new Date();
-                if (time - this.startTime < 100) {
+                if (time - this.startTime < 120) {
                     window.requestAnimationFrame(this.move.bind(this));
                     return false;
                 }
