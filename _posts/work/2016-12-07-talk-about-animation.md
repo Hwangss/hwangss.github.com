@@ -35,4 +35,4 @@ title: 说说动画
 
 最后的最后就是奉上:
 
-![demo地址]({{site.assets}}/article/201612/qrcode.png)。
+<img src="{{site.assets}}/article/201612/qrcode.png" width="50%" alt="">。
