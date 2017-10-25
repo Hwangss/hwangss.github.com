@@ -1,6 +1,5 @@
 @keyframes shake {
-  0%,
-  100% {
+  0%,100% {
     transform: rotate(5deg);
   }
   50% {
@@ -8,8 +7,7 @@
   }
 }
 @keyframes snowflake {
-  0%,
-  100% {
+  0%,100% {
     opacity: 0;
   }
   50% {
@@ -30,8 +28,7 @@
   }
 }
 @keyframes flash {
-  0%,
-  100% {
+  0%,100% {
     background-color: rgba(255, 255, 255, 0);
   }
   50% {
@@ -42,8 +39,7 @@
   0% {
     background-color: #fff;
   }
-  33%,
-  66% {
+  33%,66% {
     background-color: #e7d6b5;
   }
   100% {
@@ -55,8 +51,7 @@
     opacity: 0;
     transform: translateX(0) rotate(10deg) translateZ(0);
   }
-  30%,
-  80% {
+  30%,80% {
     opacity: 1;
   }
   100% {
@@ -65,19 +60,17 @@
   }
 }
 @keyframes tips {
-  0%,
-  66.7% {
-    opacity: 0.8;
+  0%,66.7% {
+    opacity: .8;
   }
-  66.8%,
-  100% {
+  66.8%,100% {
     opacity: 0;
   }
 }
 @keyframes featherLand {
   0% {
     transform: translate3d(0, -100%, 0);
-    opacity: 0.8;
+    opacity: .8;
   }
   20% {
     transform: translate3d(-150%, 200%, 0) rotate(40deg);
@@ -92,7 +85,7 @@
     transform: translate3d(140%, 1400%, 0) rotate(10deg);
   }
   90% {
-    opacity: 0.8;
+    opacity: .8;
   }
   100% {
     transform: translate3d(-400%, 1800%, 0) rotate(20deg);
@@ -164,7 +157,7 @@ p {
 
 .g-door {
   background-image: url("../image/scene-door.png");
-  background-image: image-set("../image/scene-door.png" 1x, "../image/scene-door@2x.png" 2x, "../image/scene-door@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-door.png") 1x, url("../image/scene-door@2x.png") 2x, url("../image/scene-door@3x.png") 3x);
   background-position: center center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -175,7 +168,7 @@ p {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 2s ease-in-out 0.6s, opacity 1.5s ease-in-out 2s, visibility 0s 3.5s;
+  transition: transform 2s ease-in-out .6s,opacity 1.5s ease-in-out 2s,visibility 0s 3.5s;
 }
 .device-andriod .g-door {
   background-image: url("../image/scene-door.png");
@@ -194,9 +187,9 @@ p {
 }
 .g-door:after {
   position: absolute;
-  content: "";
+  content: '';
   background-image: url("../image/scene-open-door.jpg");
-  background-image: image-set("../image/scene-open-door.jpg" 1x, "../image/scene-open-door@2x.jpg" 2x, "../image/scene-open-door@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-open-door.jpg") 1x, url("../image/scene-open-door@2x.jpg") 2x, url("../image/scene-open-door@3x.jpg") 3x);
   background-position: center center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -213,7 +206,7 @@ p {
 }
 .g-door:before {
   position: absolute;
-  content: "";
+  content: '';
   background-color: rgba(192, 112, 52, 0.6);
   left: 16.90821%;
   top: 26.28968%;
@@ -231,7 +224,7 @@ p {
   transform: translateY(-8.63095%) scale(0.66344);
 }
 .z-loaded ~ .g-view {
-  transition: 1.4s ease-in-out 0.6s;
+  transition: 1.4s ease-in-out .6s;
   transform: none;
 }
 
@@ -242,7 +235,7 @@ p {
   width: 100%;
   height: 100%;
   white-space: nowrap;
-  transition: 0.8s ease-in-out;
+  transition: .8s ease-in-out;
   font-size: 0;
 }
 [data-step="2"] .g-wrap {
@@ -252,7 +245,7 @@ p {
   transform: translateX(-300%) translateZ(0);
 }
 [data-step="4"] .g-wrap {
-  transition-delay: 0.4s;
+  transition-delay: .4s;
   transform: translateX(-400%) translateZ(0);
 }
 [data-step="5"] .g-wrap {
@@ -260,7 +253,7 @@ p {
 }
 [data-step="6"] .g-wrap {
   transform: translateX(-600%) translateZ(0);
-  transition-delay: 0.4s;
+  transition-delay: .4s;
 }
 [data-step="7"] .g-wrap {
   transform: translateX(-700%) translateZ(0);
@@ -278,7 +271,7 @@ p {
   height: 100%;
   white-space: nowrap;
   font-size: 0;
-  transition: 0.8s ease-in-out;
+  transition: .8s ease-in-out;
 }
 [data-step="2"] .g-front {
   transform: translateX(-100%) translateZ(0);
@@ -288,7 +281,7 @@ p {
   transform: translateX(-300%) translateZ(0);
 }
 [data-step="4"] .g-front {
-  transition-delay: 0.4s;
+  transition-delay: .4s;
   transform: translateX(-400%) translateZ(0);
 }
 [data-step="5"] .g-front {
@@ -317,7 +310,7 @@ p {
   vertical-align: top;
 }
 
-[class|="layer"] {
+[class|='layer'] {
   position: absolute;
   z-index: 1;
   top: 0;
@@ -333,8 +326,8 @@ p {
   z-index: 2;
 }
 
-[class~="element"],
-[class|="people"] {
+[class~='element'],
+[class|='people'] {
   position: absolute;
   background-size: 100% 100%;
   background-position: center center;
@@ -359,7 +352,7 @@ p {
 
 .u-txt-1 {
   background-image: url("../image/txt-1.png");
-  background-image: image-set("../image/txt-1.png" 1x, "../image/txt-1@2x.png" 2x, "../image/txt-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/txt-1.png") 1x, url("../image/txt-1@2x.png") 2x, url("../image/txt-1@3x.png") 3x);
   top: 9.72222%;
   width: 51.93237%;
   height: 8.03571%;
@@ -370,7 +363,7 @@ p {
 
 .u-txt-2 {
   background-image: url("../image/txt-2.png");
-  background-image: image-set("../image/txt-2.png" 1x, "../image/txt-2@2x.png" 2x, "../image/txt-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/txt-2.png") 1x, url("../image/txt-2@2x.png") 2x, url("../image/txt-2@3x.png") 3x);
   top: 7.49008%;
   width: 62.31884%;
   height: 8.03571%;
@@ -382,7 +375,7 @@ p {
 
 .u-txt-3 {
   background-image: url("../image/txt-3.png");
-  background-image: image-set("../image/txt-3.png" 1x, "../image/txt-3@2x.png" 2x, "../image/txt-3@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/txt-3.png") 1x, url("../image/txt-3@2x.png") 2x, url("../image/txt-3@3x.png") 3x);
   top: 11.95437%;
   width: 67.3913%;
   height: 8.03571%;
@@ -393,7 +386,7 @@ p {
 
 .u-txt-4 {
   background-image: url("../image/txt-4.png");
-  background-image: image-set("../image/txt-4.png" 1x, "../image/txt-4@2x.png" 2x, "../image/txt-4@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/txt-4.png") 1x, url("../image/txt-4@2x.png") 2x, url("../image/txt-4@3x.png") 3x);
   bottom: 10.81349%;
   width: 55.7971%;
   height: 8.03571%;
@@ -404,7 +397,7 @@ p {
 
 .u-txt-5 {
   background-image: url("../image/txt-5.png");
-  background-image: image-set("../image/txt-5.png" 1x, "../image/txt-5@2x.png" 2x, "../image/txt-5@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/txt-5.png") 1x, url("../image/txt-5@2x.png") 2x, url("../image/txt-5@3x.png") 3x);
   top: 13.04563%;
   width: 55.7971%;
   height: 8.03571%;
@@ -416,7 +409,7 @@ p {
 
 .u-txt-6 {
   background-image: url("../image/txt-6.png");
-  background-image: image-set("../image/txt-6.png" 1x, "../image/txt-6@2x.png" 2x, "../image/txt-6@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/txt-6.png") 1x, url("../image/txt-6@2x.png") 2x, url("../image/txt-6@3x.png") 3x);
   top: 10.31746%;
   width: 66.90821%;
   height: 8.18452%;
@@ -428,7 +421,7 @@ p {
 
 .u-txt-7 {
   background-image: url("../image/txt-7.png");
-  background-image: image-set("../image/txt-7.png" 1x, "../image/txt-7@2x.png" 2x, "../image/txt-7@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/txt-7.png") 1x, url("../image/txt-7@2x.png") 2x, url("../image/txt-7@3x.png") 3x);
   top: 13.93849%;
   width: 55.55556%;
   height: 8.03571%;
@@ -440,14 +433,14 @@ p {
 
 .page1 .layer-back {
   background-image: url("../image/scene-1-b-1.jpg");
-  background-image: image-set("../image/scene-1-b-1.jpg" 1x, "../image/scene-1-b-1@2x.jpg" 2x, "../image/scene-1-b-1@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-1-b-1.jpg") 1x, url("../image/scene-1-b-1@2x.jpg") 2x, url("../image/scene-1-b-1@3x.jpg") 3x);
 }
 .device-andriod .page1 .layer-back {
   background-image: url("../image/scene-1-b-1.jpg");
 }
 .people-1 {
   background-image: url("../image/scene-1-m-1.png");
-  background-image: image-set("../image/scene-1-m-1.png" 1x, "../image/scene-1-m-1@2x.png" 2x, "../image/scene-1-m-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-1-m-1.png") 1x, url("../image/scene-1-m-1@2x.png") 2x, url("../image/scene-1-m-1@3x.png") 3x);
   left: 0;
   top: 42.50992%;
   width: 99.67794%;
@@ -460,11 +453,11 @@ p {
 }
 .in .people-1 {
   opacity: 1;
-  transition: 1s opacity ease-out 0.6s;
+  transition: 1s opacity ease-out .6s;
 }
 .u-pendulum {
   background-image: url("../image/scene-1-b-2.png");
-  background-image: image-set("../image/scene-1-b-2.png" 1x, "../image/scene-1-b-2@2x.png" 2x, "../image/scene-1-b-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-1-b-2.png") 1x, url("../image/scene-1-b-2@2x.png") 2x, url("../image/scene-1-b-2@3x.png") 3x);
   left: 54.34783%;
   top: 28.42262%;
   width: 3.46216%;
@@ -477,7 +470,7 @@ p {
 }
 .u-snowflake {
   background-image: url("../image/scene-1-b-3.png");
-  background-image: image-set("../image/scene-1-b-3.png" 1x, "../image/scene-1-b-3@2x.png" 2x, "../image/scene-1-b-3@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-1-b-3.png") 1x, url("../image/scene-1-b-3@2x.png") 2x, url("../image/scene-1-b-3@3x.png") 3x);
   right: 5.47504%;
   top: 36.90476%;
   width: 17.14976%;
@@ -496,8 +489,8 @@ p {
 }
 .u-tumbler:before {
   background-image: url("../image/scene-1-m-2.png");
-  background-image: image-set("../image/scene-1-m-2.png" 1x, "../image/scene-1-m-2@2x.png" 2x, "../image/scene-1-m-2@3x.png" 3x);
-  content: "";
+  background-image: -webkit-image-set(url("../image/scene-1-m-2.png") 1x, url("../image/scene-1-m-2@2x.png") 2x, url("../image/scene-1-m-2@3x.png") 3x);
+  content: '';
   position: absolute;
   z-index: 1;
   left: 0;
@@ -515,8 +508,8 @@ p {
 }
 .u-tumbler:after {
   background-image: url("../image/scene-1-m-2-shadow.png");
-  background-image: image-set("../image/scene-1-m-2-shadow.png" 1x, "../image/scene-1-m-2-shadow@2x.png" 2x, "../image/scene-1-m-2-shadow@3x.png" 3x);
-  content: "";
+  background-image: -webkit-image-set(url("../image/scene-1-m-2-shadow.png") 1x, url("../image/scene-1-m-2-shadow@2x.png") 2x, url("../image/scene-1-m-2-shadow@3x.png") 3x);
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -532,20 +525,20 @@ p {
 
 .page2 .layer-back {
   background-image: url("../image/scene-2-b-1.jpg");
-  background-image: image-set("../image/scene-2-b-1.jpg" 1x, "../image/scene-2-b-1@2x.jpg" 2x, "../image/scene-2-b-1@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-2-b-1.jpg") 1x, url("../image/scene-2-b-1@2x.jpg") 2x, url("../image/scene-2-b-1@3x.jpg") 3x);
 }
 .device-andriod .page2 .layer-back {
   background-image: url("../image/scene-2-b-1.jpg");
 }
 .people-2 {
   background-image: url("../image/scene-2-m-1.png");
-  background-image: image-set("../image/scene-2-m-1.png" 1x, "../image/scene-2-m-1@2x.png" 2x, "../image/scene-2-m-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-2-m-1.png") 1x, url("../image/scene-2-m-1@2x.png") 2x, url("../image/scene-2-m-1@3x.png") 3x);
   left: 22.94686%;
   top: 54.86111%;
   width: 54.83092%;
   height: 31.59722%;
   transform: translateX(100%);
-  transition: 0.8s ease-in-out 0.4s;
+  transition: .8s ease-in-out .4s;
 }
 .device-andriod .people-2 {
   background-image: url("../image/scene-2-m-1.png");
@@ -555,13 +548,13 @@ p {
 }
 .u-ornaments {
   background-image: url("../image/scene-2-b-2.png");
-  background-image: image-set("../image/scene-2-b-2.png" 1x, "../image/scene-2-b-2@2x.png" 2x, "../image/scene-2-b-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-2-b-2.png") 1x, url("../image/scene-2-b-2@2x.png") 2x, url("../image/scene-2-b-2@3x.png") 3x);
   left: 7.72947%;
   top: 30.05952%;
   width: 89.4525%;
   height: 50%;
   transform: translateX(20%);
-  transition: 0.9s ease-out 0.2s;
+  transition: .9s ease-out .2s;
 }
 .device-andriod .u-ornaments {
   background-image: url("../image/scene-2-b-2.png");
@@ -571,7 +564,7 @@ p {
 }
 .u-dove {
   background-image: url("../image/scene-2-b-3.png");
-  background-image: image-set("../image/scene-2-b-3.png" 1x, "../image/scene-2-b-3@2x.png" 2x, "../image/scene-2-b-3@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-2-b-3.png") 1x, url("../image/scene-2-b-3@2x.png") 2x, url("../image/scene-2-b-3@3x.png") 3x);
   right: 31.50315%;
   top: 19.84127%;
   width: 9.72097%;
@@ -583,25 +576,25 @@ p {
 .in .u-dove {
   transform: translate(-55.55556%, -60.60606%) scale(0.5);
   opacity: 0;
-  transition: transform 5s ease-out 1.2s, opacity 3s ease-out 3s;
+  transition: transform 5s ease-out 1.2s,opacity 3s ease-out 3s;
 }
 
 .page3 .layer-back {
   background-image: url("../image/scene-3-b-1.jpg");
-  background-image: image-set("../image/scene-3-b-1.jpg" 1x, "../image/scene-3-b-1@2x.jpg" 2x, "../image/scene-3-b-1@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-3-b-1.jpg") 1x, url("../image/scene-3-b-1@2x.jpg") 2x, url("../image/scene-3-b-1@3x.jpg") 3x);
 }
 .device-andriod .page3 .layer-back {
   background-image: url("../image/scene-3-b-1.jpg");
 }
 .people-3 {
   background-image: url("../image/scene-3-m-2.png");
-  background-image: image-set("../image/scene-3-m-2.png" 1x, "../image/scene-3-m-2@2x.png" 2x, "../image/scene-3-m-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-3-m-2.png") 1x, url("../image/scene-3-m-2@2x.png") 2x, url("../image/scene-3-m-2@3x.png") 3x);
   right: 6.36071%;
   top: 31.84524%;
   width: 54.91143%;
   height: 51.24008%;
   transform: translateX(100%);
-  transition: transform 1s ease-in-out, opacity 0.5s ease-in-out;
+  transition: transform 1s ease-in-out,opacity .5s ease-in-out;
 }
 .device-andriod .people-3 {
   background-image: url("../image/scene-3-m-2.png");
@@ -614,14 +607,14 @@ p {
 }
 .people-4 {
   background-image: url("../image/scene-3-m-1.png");
-  background-image: image-set("../image/scene-3-m-1.png" 1x, "../image/scene-3-m-1@2x.png" 2x, "../image/scene-3-m-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-3-m-1.png") 1x, url("../image/scene-3-m-1@2x.png") 2x, url("../image/scene-3-m-1@3x.png") 3x);
   left: 12.88245%;
   top: 42.1627%;
   width: 32.93076%;
   height: 43.94841%;
   transform: translateX(300%);
   opacity: 0;
-  transition: transform 1s ease-in-out 1s, opacity 0.5s ease-in-out 1s;
+  transition: transform 1s ease-in-out 1s,opacity .5s ease-in-out 1s;
 }
 .device-andriod .people-4 {
   background-image: url("../image/scene-3-m-1.png");
@@ -637,14 +630,14 @@ p {
 
 .page4 .layer-back {
   background-image: url("../image/scene-4-b-1.jpg");
-  background-image: image-set("../image/scene-4-b-1.jpg" 1x, "../image/scene-4-b-1@2x.jpg" 2x, "../image/scene-4-b-1@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-4-b-1.jpg") 1x, url("../image/scene-4-b-1@2x.jpg") 2x, url("../image/scene-4-b-1@3x.jpg") 3x);
 }
 .device-andriod .page4 .layer-back {
   background-image: url("../image/scene-4-b-1.jpg");
 }
 .people-5 {
   background-image: url("../image/scene-4-m-1.png");
-  background-image: image-set("../image/scene-4-m-1.png" 1x, "../image/scene-4-m-1@2x.png" 2x, "../image/scene-4-m-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-4-m-1.png") 1x, url("../image/scene-4-m-1@2x.png") 2x, url("../image/scene-4-m-1@3x.png") 3x);
   left: 10.95008%;
   top: 17.36111%;
   width: 85.50725%;
@@ -664,7 +657,7 @@ p {
 }
 .u-graduation {
   background-image: url("../image/scene-4-m-2.png");
-  background-image: image-set("../image/scene-4-m-2.png" 1x, "../image/scene-4-m-2@2x.png" 2x, "../image/scene-4-m-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-4-m-2.png") 1x, url("../image/scene-4-m-2@2x.png") 2x, url("../image/scene-4-m-2@3x.png") 3x);
   left: 0%;
   bottom: -5.65476%;
   width: 96.8599%;
@@ -682,13 +675,13 @@ p {
 }
 .u-flowerpot {
   background-image: url("../image/scene-4-f-1.png");
-  background-image: image-set("../image/scene-4-f-1.png" 1x, "../image/scene-4-f-1@2x.png" 2x, "../image/scene-4-f-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-4-f-1.png") 1x, url("../image/scene-4-f-1@2x.png") 2x, url("../image/scene-4-f-1@3x.png") 3x);
   left: -20.61192%;
   bottom: 0;
   width: 141.30435%;
   height: 30.95238%;
   transform: translateX(100%);
-  transition: 1s ease-in-out 0.5s;
+  transition: 1s ease-in-out .5s;
   transform: translateX(14.58689%);
 }
 .device-andriod .u-flowerpot {
@@ -704,20 +697,20 @@ p {
 
 .page5 .layer-back {
   background-image: url("../image/scene-5-b-1.jpg");
-  background-image: image-set("../image/scene-5-b-1.jpg" 1x, "../image/scene-5-b-1@2x.jpg" 2x, "../image/scene-5-b-1@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-5-b-1.jpg") 1x, url("../image/scene-5-b-1@2x.jpg") 2x, url("../image/scene-5-b-1@3x.jpg") 3x);
 }
 .device-andriod .page5 .layer-back {
   background-image: url("../image/scene-5-b-1.jpg");
 }
 .u-flag {
   background-image: url("../image/scene-5-b-2.png");
-  background-image: image-set("../image/scene-5-b-2.png" 1x, "../image/scene-5-b-2@2x.png" 2x, "../image/scene-5-b-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-5-b-2.png") 1x, url("../image/scene-5-b-2@2x.png") 2x, url("../image/scene-5-b-2@3x.png") 3x);
   left: 0;
   top: 0;
   width: 97.50403%;
   height: 12.20238%;
   transform: translateY(-100%);
-  transition: 0.5s ease 0.8s;
+  transition: .5s ease .8s;
 }
 .device-andriod .u-flag {
   background-image: url("../image/scene-5-b-2.png");
@@ -727,13 +720,13 @@ p {
 }
 .u-light {
   background-image: url("../image/scene-5-b-3.png");
-  background-image: image-set("../image/scene-5-b-3.png" 1x, "../image/scene-5-b-3@2x.png" 2x, "../image/scene-5-b-3@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-5-b-3.png") 1x, url("../image/scene-5-b-3@2x.png") 2x, url("../image/scene-5-b-3@3x.png") 3x);
   left: 12.56039%;
   top: 0;
   width: 74.87923%;
   height: 46.72619%;
   opacity: 0;
-  transition: 0.5s ease-in 1s;
+  transition: .5s ease-in 1s;
 }
 .device-andriod .u-light {
   background-image: url("../image/scene-5-b-3.png");
@@ -743,7 +736,7 @@ p {
 }
 .people-6 {
   background-image: url("../image/scene-5-m-1.png");
-  background-image: image-set("../image/scene-5-m-1.png" 1x, "../image/scene-5-m-1@2x.png" 2x, "../image/scene-5-m-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-5-m-1.png") 1x, url("../image/scene-5-m-1@2x.png") 2x, url("../image/scene-5-m-1@3x.png") 3x);
   right: 0;
   bottom: 0;
   width: 99.03382%;
@@ -773,9 +766,9 @@ p {
   bottom: 58.61472%;
 }
 .u-smoke:before, .u-smoke:after {
-  content: "";
+  content: '';
   background-image: url("../image/scene-5-m-2.png");
-  background-image: image-set("../image/scene-5-m-2.png" 1x, "../image/scene-5-m-2@2x.png" 2x, "../image/scene-5-m-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-5-m-2.png") 1x, url("../image/scene-5-m-2@2x.png") 2x, url("../image/scene-5-m-2@3x.png") 3x);
   background-size: 200% auto;
   position: absolute;
   left: 0;
@@ -792,19 +785,19 @@ p {
 }
 .u-smoke:after {
   background-position: right top;
-  animation-delay: 0.6s;
+  animation-delay: .6s;
 }
 
 .page6 .layer-back {
   background-image: url("../image/scene-6-b-1.jpg");
-  background-image: image-set("../image/scene-6-b-1.jpg" 1x, "../image/scene-6-b-1@2x.jpg" 2x, "../image/scene-6-b-1@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-6-b-1.jpg") 1x, url("../image/scene-6-b-1@2x.jpg") 2x, url("../image/scene-6-b-1@3x.jpg") 3x);
 }
 .device-andriod .page6 .layer-back {
   background-image: url("../image/scene-6-b-1.jpg");
 }
 .people-7 {
   background-image: url("../image/scene-6-m-1.png");
-  background-image: image-set("../image/scene-6-m-1.png" 1x, "../image/scene-6-m-1@2x.png" 2x, "../image/scene-6-m-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-6-m-1.png") 1x, url("../image/scene-6-m-1@2x.png") 2x, url("../image/scene-6-m-1@3x.png") 3x);
   left: 16.66667%;
   top: 36.11111%;
   width: 51.93237%;
@@ -820,13 +813,13 @@ p {
 }
 .u-curtain {
   background-image: url("../image/scene-6-b-2.png");
-  background-image: image-set("../image/scene-6-b-2.png" 1x, "../image/scene-6-b-2@2x.png" 2x, "../image/scene-6-b-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-6-b-2.png") 1x, url("../image/scene-6-b-2@2x.png") 2x, url("../image/scene-6-b-2@3x.png") 3x);
   left: -5.63607%;
   top: 0;
   width: 111.5942%;
   height: 38.04563%;
   transform: translateY(-100%);
-  transition: 1.2s ease-in-out 0.6s;
+  transition: 1.2s ease-in-out .6s;
 }
 .device-andriod .u-curtain {
   background-image: url("../image/scene-6-b-2.png");
@@ -836,7 +829,7 @@ p {
 }
 .u-petal {
   background-image: url("../image/scene-6-m-2.png");
-  background-image: image-set("../image/scene-6-m-2.png" 1x, "../image/scene-6-m-2@2x.png" 2x, "../image/scene-6-m-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-6-m-2.png") 1x, url("../image/scene-6-m-2@2x.png") 2x, url("../image/scene-6-m-2@3x.png") 3x);
   left: 1.55039%;
   top: 75.23292%;
   width: 117.9845%;
@@ -855,20 +848,20 @@ p {
 
 .page7 .layer-back {
   background-image: url("../image/scene-7-b-1.jpg");
-  background-image: image-set("../image/scene-7-b-1.jpg" 1x, "../image/scene-7-b-1@2x.jpg" 2x, "../image/scene-7-b-1@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-7-b-1.jpg") 1x, url("../image/scene-7-b-1@2x.jpg") 2x, url("../image/scene-7-b-1@3x.jpg") 3x);
 }
 .device-andriod .page7 .layer-back {
   background-image: url("../image/scene-7-b-1.jpg");
 }
 .page7 .layer-middle {
-  transition: 0.8s ease-in-out;
+  transition: .8s ease-in-out;
 }
 .page7.out .layer-middle {
   transform: translateX(-20%);
 }
 .people-8 {
   background-image: url("../image/scene-7-m-1.png");
-  background-image: image-set("../image/scene-7-m-1.png" 1x, "../image/scene-7-m-1@2x.png" 2x, "../image/scene-7-m-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-7-m-1.png") 1x, url("../image/scene-7-m-1@2x.png") 2x, url("../image/scene-7-m-1@3x.png") 3x);
   left: 25.2818%;
   top: 40.02976%;
   width: 45.00805%;
@@ -884,7 +877,7 @@ p {
 }
 .people-9 {
   background-image: url("../image/scene-7-m-2.png");
-  background-image: image-set("../image/scene-7-m-2.png" 1x, "../image/scene-7-m-2@2x.png" 2x, "../image/scene-7-m-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-7-m-2.png") 1x, url("../image/scene-7-m-2@2x.png") 2x, url("../image/scene-7-m-2@3x.png") 3x);
   left: 29.22705%;
   top: 49.75198%;
   width: 47.66506%;
@@ -900,7 +893,7 @@ p {
 }
 .u-home {
   background-image: url("../image/scene-7-m-3.png");
-  background-image: image-set("../image/scene-7-m-3.png" 1x, "../image/scene-7-m-3@2x.png" 2x, "../image/scene-7-m-3@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-7-m-3.png") 1x, url("../image/scene-7-m-3@2x.png") 2x, url("../image/scene-7-m-3@3x.png") 3x);
   left: -10.06441%;
   bottom: 5.80357%;
   width: 126.00644%;
@@ -916,7 +909,7 @@ p {
 }
 .u-camera {
   background-image: url("../image/scene-7-f-1.png");
-  background-image: image-set("../image/scene-7-f-1.png" 1x, "../image/scene-7-f-1@2x.png" 2x, "../image/scene-7-f-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-7-f-1.png") 1x, url("../image/scene-7-f-1@2x.png") 2x, url("../image/scene-7-f-1@3x.png") 3x);
   left: 36.23188%;
   bottom: 0;
   width: 40.49919%;
@@ -936,7 +929,7 @@ p {
 }
 .u-photo {
   background-image: url("../image/scene-7-f-2.jpg");
-  background-image: image-set("../image/scene-7-f-2.jpg" 1x, "../image/scene-7-f-2@2x.jpg" 2x, "../image/scene-7-f-2@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-7-f-2.jpg") 1x, url("../image/scene-7-f-2@2x.jpg") 2x, url("../image/scene-7-f-2@3x.jpg") 3x);
   left: 41.94847%;
   top: 81.05159%;
   width: 13.60709%;
@@ -953,7 +946,7 @@ p {
 
 .u-ani-photo {
   background-image: url("../image/scene-7-f-2.jpg");
-  background-image: image-set("../image/scene-7-f-2.jpg" 1x, "../image/scene-7-f-2@2x.jpg" 2x, "../image/scene-7-f-2@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-7-f-2.jpg") 1x, url("../image/scene-7-f-2@2x.jpg") 2x, url("../image/scene-7-f-2@3x.jpg") 3x);
   z-index: 20;
   left: 42.19002%;
   top: 81.05159%;
@@ -970,7 +963,7 @@ p {
   opacity: 1;
 }
 [data-step="8"] .u-ani-photo {
-  transition: 1s ease-in-out 1s, opacity 1s ease-in-out 4.5s;
+  transition: 1s ease-in-out 1s,opacity 1s ease-in-out 4.5s;
   visibility: visible;
   left: 43.47826%;
   top: 23.80952%;
@@ -982,7 +975,7 @@ p {
 }
 .page8 .layer-back {
   background-image: url("../image/scene-8-b-1.jpg");
-  background-image: image-set("../image/scene-8-b-1.jpg" 1x, "../image/scene-8-b-1@2x.jpg" 2x, "../image/scene-8-b-1@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-8-b-1.jpg") 1x, url("../image/scene-8-b-1@2x.jpg") 2x, url("../image/scene-8-b-1@3x.jpg") 3x);
 }
 .device-andriod .page8 .layer-back {
   background-image: url("../image/scene-8-b-1.jpg");
@@ -1006,7 +999,7 @@ p {
 }
 .u-topic-txt {
   mask-image: url("../image/scene-8-m-4.png");
-  mask-image: image-set("../image/scene-8-m-4.png" 1x, "../image/scene-8-m-4@2x.png" 2x, "../image/scene-8-m-4@3x.png" 3x);
+  mask-image: -webkit-image-set(url("../image/scene-8-m-4.png") 1x, url("../image/scene-8-m-4@2x.png") 2x, url("../image/scene-8-m-4@3x.png") 3x);
   mask-size: 100% 100%;
   left: 23.10789%;
   top: 6.69643%;
@@ -1021,7 +1014,7 @@ p {
 }
 .u-topic-icon {
   background-image: url("../image/scene-8-m-5.png");
-  background-image: image-set("../image/scene-8-m-5.png" 1x, "../image/scene-8-m-5@2x.png" 2x, "../image/scene-8-m-5@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-8-m-5.png") 1x, url("../image/scene-8-m-5@2x.png") 2x, url("../image/scene-8-m-5@3x.png") 3x);
   left: 20.77295%;
   top: 36.16071%;
   width: 13.60709%;
@@ -1038,7 +1031,7 @@ p {
 .u-end-txt-1 {
   transition-delay: 2s;
   background-image: url("../image/scene-8-m-1.png");
-  background-image: image-set("../image/scene-8-m-1.png" 1x, "../image/scene-8-m-1@2x.png" 2x, "../image/scene-8-m-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-8-m-1.png") 1x, url("../image/scene-8-m-1@2x.png") 2x, url("../image/scene-8-m-1@3x.png") 3x);
 }
 .device-andriod .u-end-txt-1 {
   background-image: url("../image/scene-8-m-1.png");
@@ -1046,7 +1039,7 @@ p {
 .u-end-txt-2 {
   transition-delay: 2.5s;
   background-image: url("../image/scene-8-m-2.png");
-  background-image: image-set("../image/scene-8-m-2.png" 1x, "../image/scene-8-m-2@2x.png" 2x, "../image/scene-8-m-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-8-m-2.png") 1x, url("../image/scene-8-m-2@2x.png") 2x, url("../image/scene-8-m-2@3x.png") 3x);
 }
 .device-andriod .u-end-txt-2 {
   background-image: url("../image/scene-8-m-2.png");
@@ -1054,7 +1047,7 @@ p {
 .u-end-txt-3 {
   transition-delay: 3s;
   background-image: url("../image/scene-8-m-3.png");
-  background-image: image-set("../image/scene-8-m-3.png" 1x, "../image/scene-8-m-3@2x.png" 2x, "../image/scene-8-m-3@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-8-m-3.png") 1x, url("../image/scene-8-m-3@2x.png") 2x, url("../image/scene-8-m-3@3x.png") 3x);
 }
 .device-andriod .u-end-txt-3 {
   background-image: url("../image/scene-8-m-3.png");
@@ -1074,7 +1067,7 @@ p {
 .u-btn-1 {
   right: 17.71337%;
   background-image: url("../image/scene-8-m-6.png");
-  background-image: image-set("../image/scene-8-m-6.png" 1x, "../image/scene-8-m-6@2x.png" 2x, "../image/scene-8-m-6@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-8-m-6.png") 1x, url("../image/scene-8-m-6@2x.png") 2x, url("../image/scene-8-m-6@3x.png") 3x);
 }
 .device-andriod .u-btn-1 {
   background-image: url("../image/scene-8-m-6.png");
@@ -1082,14 +1075,14 @@ p {
 .u-btn-2 {
   left: 17.71337%;
   background-image: url("../image/scene-8-m-7.png");
-  background-image: image-set("../image/scene-8-m-7.png" 1x, "../image/scene-8-m-7@2x.png" 2x, "../image/scene-8-m-7@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-8-m-7.png") 1x, url("../image/scene-8-m-7@2x.png") 2x, url("../image/scene-8-m-7@3x.png") 3x);
 }
 .device-andriod .u-btn-2 {
   background-image: url("../image/scene-8-m-7.png");
 }
 .u-logo {
   background-image: url("../image/scene-8-m-8.png");
-  background-image: image-set("../image/scene-8-m-8.png" 1x, "../image/scene-8-m-8@2x.png" 2x, "../image/scene-8-m-8@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-8-m-8.png") 1x, url("../image/scene-8-m-8@2x.png") 2x, url("../image/scene-8-m-8@3x.png") 3x);
   background-size: 100% 100%;
   background-position: center top;
   left: 50%;
@@ -1110,7 +1103,7 @@ p {
 
 .page-transition {
   background-image: url("../image/scene-transition.jpg");
-  background-image: image-set("../image/scene-transition.jpg" 1x, "../image/scene-transition@2x.jpg" 2x, "../image/scene-transition@3x.jpg" 3x);
+  background-image: -webkit-image-set(url("../image/scene-transition.jpg") 1x, url("../image/scene-transition@2x.jpg") 2x, url("../image/scene-transition@3x.jpg") 3x);
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1121,14 +1114,14 @@ p {
 
 .u-tips {
   background-image: url("../image/tips-slider.png");
-  background-image: image-set("../image/tips-slider.png" 1x, "../image/tips-slider@2x.png" 2x, "../image/tips-slider@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/tips-slider.png") 1x, url("../image/tips-slider@2x.png") 2x, url("../image/tips-slider@3x.png") 3x);
   z-index: 30;
   right: 0%;
   bottom: 5.95238%;
   width: 53.30113%;
   height: 6.59722%;
   visibility: hidden;
-  opacity: 0.5;
+  opacity: .5;
   transform: scale(0.8);
   transform-origin: right bottom;
 }
@@ -1144,7 +1137,7 @@ p {
 }
 .u-tips .u-tips-hand {
   background-image: url("../image/tips-hand.png");
-  background-image: image-set("../image/tips-hand.png" 1x, "../image/tips-hand@2x.png" 2x, "../image/tips-hand@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/tips-hand.png") 1x, url("../image/tips-hand@2x.png") 2x, url("../image/tips-hand@3x.png") 3x);
   background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1161,7 +1154,7 @@ p {
 
 .u-sofa {
   background-image: url("../image/scene-2-f-1.png");
-  background-image: image-set("../image/scene-2-f-1.png" 1x, "../image/scene-2-f-1@2x.png" 2x, "../image/scene-2-f-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-2-f-1.png") 1x, url("../image/scene-2-f-1@2x.png") 2x, url("../image/scene-2-f-1@3x.png") 3x);
   left: -46.37681%;
   bottom: 0;
   width: 114.81481%;
@@ -1173,13 +1166,13 @@ p {
 
 .u-desk {
   background-image: url("../image/scene-3-f-1.png");
-  background-image: image-set("../image/scene-3-f-1.png" 1x, "../image/scene-3-f-1@2x.png" 2x, "../image/scene-3-f-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-3-f-1.png") 1x, url("../image/scene-3-f-1@2x.png") 2x, url("../image/scene-3-f-1@3x.png") 3x);
   left: 0.96618%;
   bottom: 0;
   width: 97.18196%;
   height: 22.81746%;
   transform: translateX(100%);
-  transition: 1s ease-in-out 0.4s;
+  transition: 1s ease-in-out .4s;
 }
 .device-andriod .u-desk {
   background-image: url("../image/scene-3-f-1.png");
@@ -1190,13 +1183,13 @@ p {
 
 .u-student {
   background-image: url("../image/scene-3-f-2.png");
-  background-image: image-set("../image/scene-3-f-2.png" 1x, "../image/scene-3-f-2@2x.png" 2x, "../image/scene-3-f-2@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-3-f-2.png") 1x, url("../image/scene-3-f-2@2x.png") 2x, url("../image/scene-3-f-2@3x.png") 3x);
   left: 0.96618%;
   bottom: 0;
   width: 97.18196%;
   height: 22.81746%;
   transform: translateX(100%);
-  transition: 1s ease-in-out 0.6s;
+  transition: 1s ease-in-out .6s;
 }
 .device-andriod .u-student {
   background-image: url("../image/scene-3-f-2.png");
@@ -1207,7 +1200,7 @@ p {
 
 .u-package {
   background-image: url("../image/scene-5-f-1.png");
-  background-image: image-set("../image/scene-5-f-1.png" 1x, "../image/scene-5-f-1@2x.png" 2x, "../image/scene-5-f-1@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/scene-5-f-1.png") 1x, url("../image/scene-5-f-1@2x.png") 2x, url("../image/scene-5-f-1@3x.png") 3x);
   left: -17.79388%;
   bottom: 0;
   width: 58.69565%;
@@ -1223,7 +1216,7 @@ p {
 }
 
 .front7.in {
-  animation: flash 0.5s ease-in-out 4.2s;
+  animation: flash .5s ease-in-out 4.2s;
 }
 
 .u-music {
@@ -1244,7 +1237,7 @@ p {
 
 .u-feather {
   background-image: url("../image/feather.png");
-  background-image: image-set("../image/feather.png" 1x, "../image/feather@2x.png" 2x, "../image/feather@3x.png" 3x);
+  background-image: -webkit-image-set(url("../image/feather.png") 1x, url("../image/feather@2x.png") 2x, url("../image/feather@3x.png") 3x);
   user-select: none;
   pointer-events: none;
   right: 20.12882%;
