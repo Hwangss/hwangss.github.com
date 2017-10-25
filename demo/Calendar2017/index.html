@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>手账本动画</title>
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+    <script src="resources/js/flexible.js" type="text/javascript"></script>
+    <link href="resources/css/ani.css" rel="stylesheet">
+    <h1>Author: @Mss</h1>
+
+    <div class="u-mask" id="J_canvas_box"></div>
+    <div class="g-ani-mask" id="J_mask">
+        <div class="u-ani-item u-ani-1"></div>
+        <div class="u-ani-item u-ani-2"></div>
+        <div class="u-ani-item u-ani-3"></div>
+        <div class="u-ani-item u-ani-4"></div>
+        <div class="u-ani-item u-ani-5"></div>
+        <div class="u-ani-item u-ani-6"></div>
+        <div class="u-ani-item u-ani-7"></div>
+        <div class="m-around">
+            <svg viewBox="0 0 540 56" xmlns="http://www.w3.org/2000/svg">
+                <path d="M538 28A27 27 0 0 0 511,1L29,1A27 27 0 1 0 29 55L511 55A27 27 0 0 0 538 28z" stroke-width="1.5" stroke="#000" stroke-linecap="round"
+                    fill="none" class="u-around-1" />
+                <path d="M526,28A15 15 0 0 0 511,13L29 13A15 15 0 1 0 29 43L511 43A15 15 0 0 0 526 28z" stroke-width="1.5" stroke="#000"
+                    stroke-linecap="round" fill="none" class="u-around-3" />
+            </svg>
+            <div class="u-around-2">
+                <svg viewBox="0 0 540 56" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M29,5L511,5A23 23 0 0 1 511 51L31 51A23 23 0 0 1 29 5z" stroke-width="1.5" stroke="#000" stroke-linecap="round"
+                        fill="none" />
+                </svg>
+            </div>
+            <div class="u-ani-ticket">
+                <div class="u-ani-ticket-inner"></div>
+            </div>
+        </div>
+        <p class="u-ani-txt" id="J_test">正在为您打印优惠券
+            <span class="u-ani-dot"></span>
+            <span class="u-ani-dot"></span>
+            <span class="u-ani-dot"></span>
+        </p>
+    </div>
+
+
+    <script src="resources/js/zepto.js" type="text/javascript"></script>
+    <script src="resources/js/ani.js" type="text/javascript"></script>
+
+</body>
+
+</html>
