@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="cache-control" content="must-revalidate;no-cache">
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />
+    <title>感恩节</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/flexible.js"></script>
+    
+    <style>
+        body{
+            font: 12px/1.5 tahoma,arial,Hiragino Sans GB,WenQuanYi Micro Hei,'\5FAE\8F6F\96C5\9ED1','\5B8B\4F53',sans-serif;
+            color: #333;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .g-loading {
+            position: absolute;
+            z-index: 101;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: #000 url(./image/loading.jpg) center center no-repeat;
+            background-size: cover;
+        }
+
+        .g-loading.z-loaded,
+        .g-loading.z-reset {
+            visibility: hidden;
+        }
+
+        .u-percent {
+            position: absolute;
+            z-index: 10;
+            left: 50%;
+            top: 28.7%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            color: #ffd24a;
+            font-size: 21px;
+            line-height: 1.2;
+            text-align: center;
+            transition: .6s;
+        }
+
+        .z-loaded .u-percent {
+            opacity: 0;
+        }
+
+        @-webkit-keyframes hourglassFPS {
+            0%,100% {
+                -webkit-transform: translateX(0%);
+            }
+
+            50% {
+                -webkit-transform: translateX(-50%);
+            }
+        }
+
+        @keyframes hourglassFPS {
+            0%,100% {
+                transform: translateX(0%);
+            }
+
+            50% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .u-hourglass {
+            position: relative;
+            overflow: hidden;
+            width: 46px;
+            height: 91px;
+            margin: 20px auto;
+        }
+
+        .u-hourglass:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200%;
+            height: 100%;
+            background: url(./image/hourglass.png) left top no-repeat;
+            background-size: 100% 100%;
+            -webkit-animation: hourglassFPS 1s steps(1) infinite;
+            animation: hourglassFPS 1s steps(1) infinite;
+        }
+
+        .u-cross-tips {
+            display: none;
+            position: absolute;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #28211f;
+        }
+
+        .u-cross-tips-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 343px;
+            height: 184px;
+            -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            background: url(./image/cross-tips.png) left top no-repeat;
+            background-size: 100% 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="g-share-mask" id="J_share_mask"><div class="u-share-content"></div></div>
+    <div class="u-cross-tips" id="J_cross_tips"><div class="u-cross-tips-content"></div></div>
+    <div class="g-loading" id="J_loading">
+        <div class="u-percent">
+            <div class="u-percent-num" id="J_percent">0%</div>
+            <div class="u-hourglass"></div>
+            <p class="u-load-text">时光在倒流...</p>
+        </div>
+    </div>
+    <div class="g-door z-unload" data-source="page1">
+    </div>
+    <div class="g-view" id="J_view">
+        <div class="g-wrap">
+            <div class="page page1 z-unload" data-source="page1">
+                <div class="layer-back">
+                    <div class="element u-pendulum"></div>
+                    <div class="element u-snowflake"></div>
+                    <div class="element u-txt u-txt-1" data-flag="1"></div>
+                </div>
+                <div class="layer-middle">
+                    <div class="people-1"></div>
+                    <div class="element u-tumbler"></div>
+                </div>
+            </div>
+            <div class="page page2 z-unload" data-source="page2">
+                <div class="layer-back">
+                    <div class="element u-ornaments"><div class="element u-dove"></div></div>
+                    <div class="element u-txt u-txt-2" data-flag="2"></div>
+                </div>
+                <div class="layer-middle">
+                    <div class="people-2"></div>
+                </div>
+            </div>
+            <div class="page-transition z-unload" data-source="page2"></div>
+            <div class="page page3 z-unload" data-source="page3">
+                <div class="layer-back">
+                    <div class="element u-txt u-txt-3" data-flag="3"></div>
+                </div>
+                <div class="layer-middle">
+                    <div class="people-3"></div>
+                    <div class="people-4"></div>
+                </div>
+            </div>
+            <div class="page page4 z-unload" data-source="page4">
+                <div class="layer-back">
+                </div>
+                <div class="layer-middle">
+                    <div class="element u-graduation"></div>
+                    <div class="people-5"></div>
+                    <div class="element u-flowerpot"></div>
+                    <div class="element u-txt u-txt-4" data-flag="4"></div>
+                </div>
+            </div>
+            <div class="page page5 z-unload" data-source="page5">
+                <div class="layer-back">
+                    <div class="element u-flag"></div>
+                    <div class="element u-light"></div>
+                    <div class="element u-txt u-txt-5" data-flag="5"></div>
+                </div>
+                <div class="layer-middle">
+                    <div class="people-6">
+                        <div class="element u-smoke u-smoke1"></div>
+                        <div class="element u-smoke u-smoke2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="page page6 z-unload" data-source="page6">
+                <div class="layer-back">
+                    <div class="element u-curtain"></div>
+                    <div class="element u-txt u-txt-6" data-flag="6"></div>
+                </div>
+                <div class="layer-middle">
+                    <div class="people-7">
+                        <div class="element u-petal"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="page page7 z-unload" data-source="page7">
+                <div class="layer-back">
+                    <div class="element u-txt u-txt-7" data-flag="7"></div>
+                </div>
+                <div class="layer-middle">
+                    <div class="element u-home"></div>
+                    <div class="people-8"></div>
+                    <div class="people-9"></div>
+                </div>
+            </div>
+            <div class="page page8 z-unload" data-source="page8">
+                <div class="layer-back">
+                </div>
+                <div class="layer-middle">
+                    <div class="element u-topic-txt"></div>
+                    <div class="element u-topic-icon"></div>
+                    <div class="m-end-ext-wrap">
+                        <div class="element u-end-txt u-end-txt-1"></div>
+                        <div class="element u-end-txt u-end-txt-2"></div>
+                        <div class="element u-end-txt u-end-txt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="g-front">
+            <div class="front front1 z-unload" data-source="page1"></div>
+            <div class="front front2 z-unload" data-source="page2">
+                <div class="element u-sofa"></div>
+            </div>
+            <div class="front-placeholder z-unload" data-source="page2"></div>
+            <div class="front front3 z-unload" data-source="page3">
+                <div class="element u-desk"></div>
+                <div class="element u-student"></div>
+            </div>
+            <div class="front front4 z-unload" data-source="page4">
+            </div>
+            <div class="front front5 z-unload" data-source="page5">
+                <div class="element u-package"></div>
+            </div>
+            <div class="front front6 z-unload" data-source="page6">
+            </div>
+            <div class="front front7 z-unload" data-source="page7">
+                <div class="element u-camera">
+                </div>
+            </div>
+            <div class="front front8 z-unload" data-source="page8">
+                <div class="element u-btn u-btn-1" id="J_btn_share" mars_sead="share_btn"></div>
+                <div class="element u-btn u-btn-2" id="J_btn_reset" mars_sead="replay_btn"></div>
+                <a href="javascript:;" id="J_go_home" mars_sead="open_vip_pic" class="element u-logo z-unload" data-source="page8"></a>
+                <div class="element u-feather"></div>
+            </div>
+        </div>
+        <div class="element z-unload u-ani-photo" data-source="page7"></div>
+        <div class="element u-tips z-unload" data-source="page1" id="J_slider_tips"><div class="element u-tips-hand"></div></div>
+        <div class="u-music" id="J_music"></div>
+    </div>
+
+    <script>
+        var forhorview = document.getElementById('J_cross_tips');
+        window.__isCross = false;
+        function _onorientationchange(e){
+            if(window.orientation==90||window.orientation==-90){
+                forhorview.style.display = 'block';
+                window.__isCross = true;
+            }else{
+                forhorview.style.display = 'none';
+                window.__isCross = false;
+            }
+        }
+        _onorientationchange();
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize",function(e){_onorientationchange(e);}, false);
+    </script>
+    <!--debug-->
+    <script src="./js/zepto.js"></script>
+    <script src="./js/sapp.js"></script>
+    <script src="./js/index.js"></script>
+    <!--/debug-->
+</body>
+</html>
